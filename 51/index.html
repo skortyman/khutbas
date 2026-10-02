@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Khutba 51 - Artificial Intelligence</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Khutba 51">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#11161C">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+:root {
+  --ground: #F4F6F8;
+  --surface: #FFFFFF;
+  --ink: #151C24;
+  --ink-soft: #4A5561;
+  --accent: #B07A1E;
+  --cue: #5A7D8C;
+  --rule: #DDE3E9;
+  --bar: rgba(244, 246, 248, 0.94);
+  --scale: 1;
+  --f-serif: ui-serif, "New York", Georgia, "Times New Roman", serif;
+  --f-sans: -apple-system, system-ui, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --f-arabic: system-ui, "Geeza Pro", "Al Bayan", "Baghdad", "Traditional Arabic", serif;
+  --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --bar-h: 3.25rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #11161C;
+    --surface: #182028;
+    --ink: #E8EDF2;
+    --ink-soft: #9FAEBC;
+    --accent: #E0A94A;
+    --cue: #7FA8BA;
+    --rule: #26313B;
+    --bar: rgba(17, 22, 28, 0.94);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #11161C;
+  --surface: #182028;
+  --ink: #E8EDF2;
+  --ink-soft: #9FAEBC;
+  --accent: #E0A94A;
+  --cue: #7FA8BA;
+  --rule: #26313B;
+  --bar: rgba(17, 22, 28, 0.94);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html {
+  font-size: calc(125% * var(--scale));
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px) + 1rem);
+}
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  line-height: 1.55;
+}
+
+/* ---------- sticky bar ---------- */
+.bar {
+  position: sticky; top: 0; z-index: 10;
+  height: calc(var(--bar-h) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  display: flex; align-items: center; gap: 0.75rem;
+  padding-inline: max(1rem, env(safe-area-inset-left));
+  background: var(--bar);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.72rem;
+}
+.bar .where {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; line-height: 1.2;
+}
+.bar .where .ttl {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--f-serif); font-size: 0.85rem;
+}
+.bar .where .ttl b {
+  font-family: var(--f-mono); font-weight: 600; font-size: 0.66rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+}
+.bar .where .now {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font: 600 0.6rem/1.35 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--cue);
+}
+.ctl { display: flex; gap: 0.35rem; }
+.ctl button {
+  font: 600 0.7rem/1 var(--f-mono);
+  letter-spacing: 0.04em;
+  min-width: 2.4rem; height: 2.2rem; padding-inline: 0.6rem;
+  border: 1px solid var(--rule); border-radius: 0.5rem;
+  background: var(--surface); color: var(--ink); cursor: pointer;
+}
+.ctl button:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+
+/* ---------- jump menu ---------- */
+.sec > summary {
+  list-style: none; cursor: pointer;
+  display: inline-flex; align-items: center;
+  font: 600 0.7rem/1 var(--f-mono); letter-spacing: 0.04em;
+  height: 2.2rem; padding-inline: 0.7rem;
+  border: 1px solid var(--accent); border-radius: 0.5rem;
+  background: var(--surface); color: var(--accent);
+}
+.sec > summary::-webkit-details-marker { display: none; }
+.sec > summary .c, .sec[open] > summary .o { display: none; }
+.sec[open] > summary .c { display: inline; }
+.sec[open] > summary { background: var(--accent); color: var(--ground); }
+.jump {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 9;
+  max-height: calc(100vh - var(--bar-h)); overflow-y: auto;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  padding-block: 0.75rem 1rem;
+  padding-inline: 1rem;
+}
+.awake .bar .now::before { content: "\25CF\00a0"; color: var(--accent); }
+.ctl .needs-js { display: none; }
+.js .ctl .needs-js { display: inline-block; }
+.jump ol { list-style: none; margin: 0 auto; padding: 0; max-width: 34rem; display: grid; gap: 0.25rem; }
+.jump a {
+  display: flex; gap: 0.75rem; align-items: baseline;
+  padding: 0.55rem 0.6rem; border-radius: 0.4rem;
+  color: var(--ink); text-decoration: none; font-size: 0.85rem;
+}
+.jump a:hover { background: var(--ground); }
+.jump a .n { font-family: var(--f-serif); color: var(--accent); width: 1.2rem; flex: none; }
+.jump li.grp a {
+  display: flex; justify-content: space-between; align-items: center;
+  font: 600 0.64rem/1 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cue); padding: 0.75rem 0.6rem 0.4rem; margin-top: 0.3rem;
+  border-bottom: 1px solid var(--rule); border-radius: 0;
+}
+.jump li.grp a::after { content: "Opening \2193"; font-size: 0.55rem; opacity: 0.8; }
+.jump a.jalsa-link {
+  background: var(--ground); border: 1px dashed var(--cue);
+  font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--cue); margin-block: 0.3rem;
+}
+
+/* ---------- page ---------- */
+main {
+  max-width: 34rem; margin-inline: auto;
+  padding-inline: max(1.25rem, env(safe-area-inset-left));
+  padding-block: 1.5rem 4rem;
+}
+.masthead { padding-block: 0.5rem 1.5rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem; }
+.masthead .kicker {
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--cue);
+}
+.masthead h1 {
+  font-family: var(--f-serif); font-weight: 600;
+  font-size: 1.7rem; line-height: 1.2; margin: 0.5rem 0 0;
+  text-wrap: balance;
+}
+
+/* ritual label rule: unnumbered, structural */
+.ritual {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-block: 2.5rem 1.25rem;
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.ritual::before, .ritual::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+/* content sections: numbered argument */
+section.arg { margin-block: 2.25rem 0; }
+.arg h2 {
+  display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.5rem; align-items: baseline;
+  font-family: var(--f-serif); font-weight: 600;
+  font-size: 1.3rem; line-height: 1.25; margin: 0 0 1rem;
+  text-wrap: balance;
+}
+.arg h2 .n { color: var(--accent); font-size: 1.45rem; }
+
+p { margin: 0 0 0.85rem; }
+ul, ol.steps { margin: 0 0 1rem; padding-left: 1.15rem; }
+li { margin-bottom: 0.4rem; }
+li > ul { margin-top: 0.4rem; margin-bottom: 0.2rem; }
+li::marker { color: var(--ink-soft); }
+strong { font-weight: 650; }
+.lead { font-weight: 600; }
+
+/* ---------- Arabic shapes ---------- */
+.passage {
+  background: var(--surface);
+  border-right: 3px solid var(--accent);
+  border-radius: 0.6rem 0 0 0.6rem;
+  padding: 1rem 1.15rem;
+  margin-block: 0.75rem 1.25rem;
+}
+.ar {
+  font-family: var(--f-arabic);
+  font-size: 1.55rem; line-height: 1.95;
+  direction: rtl; text-align: right;
+  margin: 0 0 0.6rem;
+}
+.en { color: var(--ink-soft); font-size: 0.9rem; margin: 0; }
+.en + .ar { margin-top: 1rem; }
+.cite {
+  display: block; margin-top: 0.6rem;
+  font: 600 0.62rem/1.3 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cue);
+}
+a.cite {
+  width: fit-content;
+  text-decoration: underline dotted var(--cue); text-underline-offset: 3px;
+}
+a.cite::after { content: " \2197"; }
+a.cite:hover { color: var(--accent); }
+.cite + .ar { margin-top: 1rem; }
+.ar-inline {
+  font-family: var(--f-arabic); font-size: 1.2em;
+  direction: rtl; unicode-bidi: isolate;
+}
+.quote-en { font-weight: 650; color: var(--ink); font-size: 1rem; margin: 0; }
+
+/* ---------- cues: never spoken ---------- */
+.pause {
+  display: flex; justify-content: center; margin-block: 1.1rem;
+}
+.pause span {
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--cue); border: 1.5px dotted var(--cue); border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+}
+.pause span::before { content: "\25CB\00a0\00a0"; }
+
+.transition {
+  display: flex; align-items: center; gap: 0.6rem; margin-block: 1.25rem;
+  font: 600 0.6rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--cue);
+}
+.transition::before, .transition::after {
+  content: ""; flex: 1; border-top: 1.5px dotted var(--cue);
+}
+
+.emph {
+  position: relative;
+  border-left: 3px dotted var(--cue);
+  padding-left: 0.9rem; margin-block: 0.75rem 1rem;
+}
+.emph::before {
+  content: "Emphasize";
+  display: block; margin-bottom: 0.45rem;
+  font: 600 0.58rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--cue);
+}
+.emph ul { margin-bottom: 0; }
+
+.jalsa {
+  margin-block: 3rem;
+  border: 2px dashed var(--cue); border-radius: 0.8rem;
+  padding: 1.5rem 1rem; text-align: center;
+  background: var(--surface);
+}
+.jalsa .big {
+  font: 700 1rem/1.2 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--cue);
+}
+.jalsa .small {
+  font: 600 0.6rem/1.4 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-soft); margin-top: 0.5rem;
+}
+
+/* ---------- duas ---------- */
+.duas { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 0.85rem; }
+.duas li { margin: 0; padding-left: 0.9rem; border-left: 2px solid var(--rule); }
+.duas .name { color: var(--accent); font-weight: 650; }
+
+.disclaimer { font-style: italic; color: var(--ink-soft); font-size: 0.9rem; margin-top: 2rem; }
+.added {
+  display: block; font: 600 0.58rem/1.3 var(--f-mono); letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--cue); font-style: normal; margin-bottom: 0.35rem;
+}
+
+details.parking {
+  margin-top: 3rem; border: 1px solid var(--rule); border-radius: 0.6rem;
+  padding: 0.75rem 1rem; background: var(--surface); font-size: 0.85rem;
+}
+details.parking summary {
+  cursor: pointer; font: 600 0.62rem/1.4 var(--f-mono); letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--cue);
+}
+details.parking ul { margin-top: 0.75rem; }
+
+.end {
+  text-align: center; margin-top: 2.5rem;
+  font: 600 0.6rem/1 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft);
+}
+
+@media (max-width: 30rem) {
+  html { font-size: calc(106.25% * var(--scale)); }
+  .bar .where .ttl { font-size: 0.8rem; }
+  .ar { font-size: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* ---------- print fallback ---------- */
+@media print {
+  :root, :root[data-theme="dark"] {
+    --ground: #fff; --surface: #fff; --ink: #000; --ink-soft: #333;
+    --accent: #000; --cue: #555; --rule: #bbb;
+  }
+  html { font-size: 12pt; }
+  .bar, .jump, details.parking { display: none !important; }
+  main { max-width: none; padding: 0; }
+  .passage { border: 1px solid #999; border-right-width: 3px; break-inside: avoid; }
+  section.arg { break-before: auto; }
+  .arg h2, .ritual { break-after: avoid; }
+  .jalsa { break-before: page; break-inside: avoid; }
+  .duas li, .emph { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="where">
+    <span class="ttl"><b>51 Khutba</b> - Artificial Intelligence: Building With Purpose, Rooted In Faith</span>
+    <span class="now" id="current">First khutba &middot; Opening</span>
+  </div>
+  <div class="ctl">
+    <details class="sec" id="sec">
+      <summary><span class="o">Sections</span><span class="c">Close</span></summary>
+      <nav class="jump" aria-label="Sections">
+    <ol>
+        <li class="grp"><a href="#k1">First khutba</a></li>
+        <li><a href="#s1"><span class="n">1</span>Are we allowed to build with this?</a></li>
+        <li><a href="#s2"><span class="n">2</span>Is this new territory for us?</a></li>
+        <li><a href="#s3"><span class="n">3</span>What happens when we hold back?</a></li>
+        <li><a href="#jalsa" class="jalsa-link">&#9675;&nbsp; Jalsa - sit 45s, resume here</a></li>
+        <li class="grp"><a href="#k2">Second khutba</a></li>
+        <li><a href="#s4"><span class="n">4</span>Does that mean we accept it blindly?</a></li>
+        <li><a href="#s5"><span class="n">5</span>So what do we do this week?</a></li>
+        <li><a href="#duas"><span class="n">&#10022;</span>Concluding duas</a></li>
+      </ol>
+      </nav>
+    </details>
+    <button type="button" class="needs-js" id="smaller" aria-label="Smaller text">A&minus;</button>
+    <button type="button" class="needs-js" id="larger" aria-label="Larger text">A+</button>
+    <button type="button" class="needs-js" id="themeBtn" aria-label="Toggle light or dark">Dark</button>
+  </div>
+</header>
+
+
+<main>
+
+<div class="masthead">
+  <div class="kicker">51 Khutba</div>
+  <h1>Artificial Intelligence: Building With Purpose, Rooted In Faith</h1>
+</div>
+
+<!-- ======================= FIRST KHUTBA ======================= -->
+<div class="ritual" id="k1" data-label="First khutba &middot; Opening">First khutba &middot; Opening</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">إِنَّ الْحَمْدَ لِلَّهِ نَحْمَدُهُ وَنَسْتَعِينُهُ وَنَسْتَغْفِرُهُ وَنَعُوذُ بِاللَّهِ مِنْ شُرُورِ أَنْفُسِنَا وَمِنْ سَيِّئَاتِ أَعْمَالِنَا مَن يَهْدِهِ اللَّهُ فَلَا مُضِلَّ لَهُ وَمَن يُضْلِلْ فَلَا هَادِيَ لَهُ وَأَشْهَدُ أَن لَّا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ صَلَّىٰ اللَّهُ عَلَيْهِ وَسَلَّمَ</p>
+  <p class="en">All praise is due to Allah. We praise Him, we seek His help, we seek His forgiveness, and we seek refuge in Allah from the evil within ourselves and our evil deeds. Whoever Allah guides, there is none to misguide him. Whoever Allah leads astray, there is none to guide him. I testify there is no god but Allah alone, without any partners, and that Muhammad, peace and blessings be upon him, is His servant and His messenger.</p>
+  <a class="cite" href="https://sunnah.com/nasai:1404" target="_blank" rel="noopener">Khutbat al-Hajah &middot; Sunan an-Nasa&rsquo;i 1404</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">يَٰأَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا يُصْلِحْ لَكُمْ أَعْمَالَكُمْ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ وَمَن يُطِعِ اللَّهَ وَرَسُولَهُ فَقَدْ فَازَ فَوْزًا عَظِيمًا</p>
+  <p class="en">O you who have believed! Fear Allah and speak words of appropriate justice. He will correct for you your deeds and forgive you your sins. And whoever obeys Allah and His Messenger has certainly attained a great success.</p>
+  <a class="cite" href="https://quran.com/33/70-71" target="_blank" rel="noopener">Al-Ahzab 33:70-71</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">أمَّا بعدُ، فإنَّ أصدقَ الحديثِ كتابُ اللهِ، وخيرَ الهديِ هديُ محمَّدٍ صلَّى اللهُ عليه وسلَّم، وشرَّ الأمورِ مُحدَثاتُها، وكلَّ مُحدَثةٍ بدعةٌ، وكلَّ بدعةٍ ضلالةٌ، وكلَّ ضلالةٍ في النَّارِ</p>
+  <p class="en">To proceed: As for what follows: the truest speech is the Book of Allah, and the best guidance is the guidance of Muhammad, may Allah bless him and grant him peace. The worst of matters are those newly introduced (into the religion); every newly introduced matter is an innovation, every innovation is misguidance, and every misguidance is in the Fire.</p>
+  <a class="cite" href="https://sunnah.com/nasai:1578" target="_blank" rel="noopener">Sunan an-Nasa&rsquo;i 1578</a>
+</div>
+
+<!-- ---------- 1 ---------- -->
+<section class="arg" id="s1" data-label="1 &middot; Are we allowed to build with this?">
+  <h2><span class="n">1</span><span>Are we allowed to build with this?</span></h2>
+
+  <p>A massive shift is running through our workplaces, our schools, and our dinner tables.</p>
+  <ul>
+    <li>Software that summarizes hundreds of books in seconds.</li>
+    <li>Engines that write code, diagnose imaging, and generate synthetic voices and video.</li>
+    <li>We call it Artificial Intelligence.</li>
+  </ul>
+
+  <p>When rapid technological disruption hits, hesitation is a normal human response.</p>
+  <ul>
+    <li>Some wonder if working with these tools conflicts with our spiritual values.</li>
+    <li>Others look at deepfakes and automated personas, wondering if the entire enterprise is spiritually destructive.</li>
+  </ul>
+
+  <div class="pause"><span>Pause &middot; 3s</span></div>
+
+  <p>Our sacred tradition gives us a clear, grounded anchor.</p>
+  <ul>
+    <li>Our jurists established a core principle:</li>
+    <li><em>Al-aslu fil-ashya&rsquo; al-ibahah</em>.</li>
+    <li><strong>In worldly matters, technology, and systems, the default ruling is permissibility.</strong></li>
+  </ul>
+
+  <p>Everything in this universe is open for us to explore, understand, and build, unless there is a clear, explicit divine prohibition.</p>
+  <ul>
+    <li>Worship is bounded.</li>
+    <li>We cannot invent a fifth daily prayer.</li>
+    <li>We cannot add an extra cycle to Fajr.</li>
+    <li>In matters of ritual faith (<em>&lsquo;ibadah</em>), innovation is rejected.</li>
+    <li>But in matters of this worldly life (<em>dunya</em>), the universe is an open workshop.</li>
+  </ul>
+
+  <p>Consider how the Prophet &#xFDFA; handled this directly with his companions.</p>
+  <ul>
+    <li>He walked past the farmers of Madinah while they were manually pollinating their date-palm trees.</li>
+    <li>He wondered aloud whether leaving them to natural winds might suffice.</li>
+    <li>Out of deep reverence, the companions stopped pollinating.</li>
+    <li>That season, the date yield fell sharply.</li>
+    <li>When they returned to him and mentioned the lost harvest, the Prophet &#xFDFA; did not scold them for experimenting.</li>
+    <li>Instead, he declared a lasting principle:</li>
+  </ul>
+
+  <div class="passage">
+    <p class="ar" lang="ar">أَنْتُمْ أَعْلَمُ بِأَمْرِ دُنْيَاكُمْ</p>
+    <p class="quote-en">&ldquo;You know best regarding the affairs of your worldly life.&rdquo;</p>
+    <a class="cite" href="https://sunnah.com/muslim:2363" target="_blank" rel="noopener">Sahih Muslim 2363</a>
+  </div>
+
+  <div class="emph">
+    <ul>
+      <li>He gave the Ummah full permission to observe, measure, test, fail, iterate, and invent.</li>
+      <li>Worldly technology is not an innovation in religion.</li>
+      <li>It is a capability gifted to human minds by Allah to solve practical problems.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ---------- 2 ---------- -->
+<section class="arg" id="s2" data-label="2 &middot; Is this new territory for us?">
+  <h2><span class="n">2</span><span>Is this new territory for us?</span></h2>
+
+  <p>When Muslims led intellectually, we did not run away from worldly tools.</p>
+  <ul>
+    <li>We invented them.</li>
+    <li>We refined them.</li>
+  </ul>
+
+  <div class="transition">Transition</div>
+
+  <p>Think back to the fifth year of the Hijrah: the Battle of the Trench (<em>Al-Khandaq</em>).</p>
+  <ul>
+    <li>An allied confederation of ten thousand enemy troops marched to destroy Madinah.</li>
+    <li>The Muslim defenders inside the city numbered only three thousand.</li>
+    <li>Outnumbered more than three to one, the defensive challenge was severe.</li>
+  </ul>
+
+  <p>Salman al-Farsi, may Allah be pleased with him, stepped forward.</p>
+  <ul>
+    <li>He brought a military engineering technique foreign to Arabia:</li>
+    <li><em>&ldquo;In Persia, when we faced an overwhelming force, we dug an impassable trench around our defenses.&rdquo;</em></li>
+    <li>The Prophet &#xFDFA; did not dismiss the idea as foreign or un-Islamic.</li>
+    <li>He saw an effective worldly tool that preserved innocent life.</li>
+    <li>He embraced it immediately.</li>
+    <li>He picked up a pickaxe and dug into the rock with his own hands alongside his companions.</li>
+  </ul>
+
+  <p>That practical mindset drove Muslim civilization for centuries.</p>
+  <ul>
+    <li>In ninth-century Baghdad, Muhammad ibn Musa al-Khwarizmi formulated algebra in <em>Kitab al-Jabr wal-Muqabala</em>.</li>
+    <li>His latinized name became the root for our modern word: <strong>Algorithm</strong>.</li>
+    <li>The step-by-step logic running inside every phone, database, and neural network today builds directly on that heritage.</li>
+  </ul>
+
+  <p>In eleventh-century Cairo, Hasan Ibn al-Haytham was placed under house arrest.</p>
+  <ul>
+    <li>He noticed a thin ray of light entering a darkened room through a tiny hole, projecting an inverted image of the world outside onto the wall opposite.</li>
+    <li>He documented the chamber, giving it the Arabic name:</li>
+    <li><strong>Al-Qamrah</strong> (<span class="ar-inline" lang="ar" dir="rtl">الْقَمْرَةُ</span>).</li>
+    <li><em>Al-qamrah</em> literally means a dark room or private chamber.</li>
+    <li>That Arabic word gave rise to the Latin <em>camera obscura</em>, which became our modern English word: <strong>Camera</strong>.</li>
+    <li>It established the foundations of optics, photography, digital displays, and computer vision.</li>
+  </ul>
+
+  <p>These scholars were not secular figures distancing themselves from faith.</p>
+  <ul>
+    <li>They were believers who understood that studying and mastering creation is a form of purposeful stewardship.</li>
+    <li>We did not trail the world.</li>
+    <li>We set the standard.</li>
+  </ul>
+</section>
+
+<!-- ---------- 3 ---------- -->
+<section class="arg" id="s3" data-label="3 &middot; What happens when we hold back?">
+  <h2><span class="n">3</span><span>What happens when we hold back?</span></h2>
+
+  <p>What changed?</p>
+  <ul>
+    <li>A moment arrived when our posture shifted from confident building to defensive fear.</li>
+    <li>Consider the historical adoption of the printing press.</li>
+  </ul>
+
+  <div class="pause"><span>Pause &middot; 3s</span></div>
+
+  <p>In the mid-fifteenth century, Johannes Gutenberg introduced movable type to Europe.</p>
+  <ul>
+    <li>It made books accessible to ordinary people.</li>
+    <li>In the Ottoman lands, leadership reacted with intense caution.</li>
+    <li>In 1485, Sultan Bayezid II issued an imperial edict prohibiting Muslims from using the printing press for Arabic script.</li>
+    <li>In 1515, Sultan Selim I reaffirmed that restriction.</li>
+    <li>The reservations were clear:
+      <ul>
+        <li>Protect tens of thousands of scribes and calligraphers whose trade depended on handwritten manuscripts.</li>
+        <li>Religious scholars feared that mechanical presses might dishonor sacred texts or introduce errors into the Qur&rsquo;an.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>Non-Muslim communities in the empire printed in Hebrew and Armenian, but the ban on Muslim-run printing of Arabic and Ottoman script lasted centuries.</p>
+  <ul>
+    <li>It was not until 1727, nearly three hundred years after Gutenberg, that Ibrahim Muteferrika obtained authorization to open the first Ottoman press for non-religious works.</li>
+    <li>In those intervening centuries, Europe printed hundreds of millions of books.</li>
+    <li>Literacy exploded, scientific discovery accelerated, and whole societies reorganized.</li>
+    <li>We fell behind on the frontier of knowledge because we treated an information-sharing tool as an existential danger.</li>
+  </ul>
+
+  <div class="emph">
+    <ul>
+      <li>When an Ummah pulls back in fear, history does not pause.</li>
+      <li>The world moves forward.</li>
+      <li>If we retreat from modern computational tools, we will spend decades playing catch-up to systems that others decided to build.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="ritual" data-label="First khutba &middot; Conclusion">First khutba &middot; Conclusion</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">أَقُولُ قَوْلِي هَٰذَا وَأَسْتَغْفِرُ اللَّهَ لِي وَلَكُمْ وَلِسَائِرِ الْمُسْلِمِينَ فَاسْتَغْفِرُوهُ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ</p>
+  <p class="en">I say this saying of mine, and I seek forgiveness from Allah for myself and for you, and for the rest of the Muslims. So ask Him for forgiveness. Indeed, He is the Forgiving, the Merciful.</p>
+</div>
+
+<!-- ======================= JALSA ======================= -->
+<div class="jalsa" id="jalsa" data-label="Jalsa">
+  <div class="big">&#9675;&nbsp; Jalsa &middot; 45s</div>
+  <div class="small">Sit. Second khutba begins below.</div>
+</div>
+
+<!-- ======================= SECOND KHUTBA ======================= -->
+<div class="ritual" id="k2" data-label="Second khutba &middot; Opening">Second khutba &middot; Opening</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">بِسْمِ اللَّهِ وَالْحَمْدُ لِلَّهِ وَالصَّلَاةُ وَالسَّلَامُ عَلَىٰ رَسُولِ اللَّهِ صَلَّىٰ اللَّهُ عَلَيْهِ وَسَلَّمَ</p>
+  <p class="en">In the name of Allah, and all praise is due to Allah, and may Allah's blessings and peace be upon the Messenger of Allah, peace and blessings be upon him.</p>
+</div>
+
+<!-- ---------- 4 ---------- -->
+<section class="arg" id="s4" data-label="4 &middot; Does that mean we accept it blindly?">
+  <h2><span class="n">4</span><span>Does that mean we accept it blindly?</span></h2>
+
+  <p>Engaging modern technology does not mean blind acceptance.</p>
+  <ul>
+    <li>A tool reflects the intent of the hand holding it.</li>
+    <li>A surgical scalpel can save a life or cause fatal harm.</li>
+    <li>The instrument is neutral; the human being carries moral responsibility.</li>
+  </ul>
+
+  <div class="pause"><span>Pause &middot; 3s</span></div>
+
+  <p>AI is not an existential savior, and it is not Dajjal.</p>
+  <ul>
+    <li>It is an advanced mathematical pattern engine.</li>
+    <li>It has no soul (<em>ruh</em>), no conscience, and no moral awareness.</li>
+    <li>It does not fear Allah.</li>
+    <li>Human developers and users carry full accountability for its application.</li>
+  </ul>
+
+  <p>Because the tool is powerful, we must study its real harms and establish firm ethical guardrails:</p>
+
+  <p class="lead">First: The Erosion of Truth.</p>
+  <ul>
+    <li>We can now clone voices and generate photorealistic events that never happened.</li>
+    <li>Family members receive forwarded videos on messaging groups and accept them without question.</li>
+    <li>Allah warned us in <strong>Surah Al-Hujurat 49:6</strong>:</li>
+  </ul>
+
+  <div class="passage">
+    <p class="ar" lang="ar">يَا أَيُّهَا الَّذِينَ آمَنُوا إِنْ جَاءَكُمْ فَاسِقٌ بِنَبَإٍ فَتَبَيَّنُوا</p>
+    <p class="quote-en">&ldquo;O you who believe, if an unverified report comes to you, investigate and verify.&rdquo;</p>
+    <a class="cite" href="https://quran.com/49/6" target="_blank" rel="noopener">Surah Al-Hujurat 49:6</a>
+  </div>
+
+  <ul>
+    <li>When media is easily fabricated, our standard of verification (<em>tabayyun</em>) must be higher.</li>
+    <li>Do not share or react until you verify original sources.</li>
+  </ul>
+
+  <p class="lead">Second: Intellectual Laziness.</p>
+  <ul>
+    <li>If our young people hand over writing, critical inquiry, and analytical reasoning to a prompt, their minds weaken.</li>
+    <li>Allah honored human beings with intellect (<em>&lsquo;aql</em>), reflection (<em>tadabbur</em>), and moral discernment.</li>
+    <li>Use technology to assist your research, never to bypass your own thinking.</li>
+  </ul>
+
+  <p class="lead">Third: Protecting the Sacred.</p>
+  <ul>
+    <li>A conversational bot is not a mufti.</li>
+    <li>It processes patterns in text; it lacks wisdom, empathy, and fear of Allah.</li>
+    <li>For life-altering choices - your marriage, family responsibilities, deep ethical questions - turn to living scholars who understand context and fear standing before their Creator.</li>
+  </ul>
+</section>
+
+<!-- ---------- 5 ---------- -->
+<section class="arg" id="s5" data-label="5 &middot; So what do we do this week?">
+  <h2><span class="n">5</span><span>So what do we do this week?</span></h2>
+
+  <p>If our families, students, and professionals leave this technology alone, who sets the standards?</p>
+  <ul>
+    <li>People who build systems without spiritual grounding, without ethical restraint, and without accountability to Allah.</li>
+    <li>We need believers designing the models, auditing bias, improving medical diagnostics, and establishing data privacy protections.</li>
+  </ul>
+
+  <p>Take three concrete commitments into your week:</p>
+  <ol class="steps">
+    <li><strong>Explore AI openly with your family.</strong>
+      <ul>
+        <li>Sit down with your children or younger siblings this weekend.</li>
+        <li>Open an AI model together.</li>
+        <li>Test it on a topic you know well, observe where it is accurate, and identify where it makes errors.</li>
+        <li>Help them become thoughtful evaluators and creators, not passive consumers.</li>
+      </ul>
+    </li>
+    <li><strong>Apply one tool to improve your daily craft.</strong>
+      <ul>
+        <li>In your office, school, clinic, or business, identify a routine task where automation reduces busywork.</li>
+        <li>Make your intention clear: gaining time to serve your family, help your community, and work with excellence.</li>
+      </ul>
+    </li>
+    <li><strong>Guard your intellect and your worship.</strong>
+      <ul>
+        <li>Never let digital systems replace genuine reading, real human conversations, or quiet reflection.</li>
+        <li>Keep your worship focused and your conscience awake.</li>
+        <li>Use the tool; never let the tool use you.</li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<div class="ritual" data-label="Second khutba &middot; Conclusion">Second khutba &middot; Conclusion</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+  <p class="ar" lang="ar">اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+  <p class="en">O Allah, send blessings upon Muhammad as You sent blessings upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious. O Allah, grant blessings to Muhammad and upon the family of Muhammad as You granted blessings to Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious.</p>
+  <a class="cite" href="https://sunnah.com/bukhari:3370" target="_blank" rel="noopener">Sahih al-Bukhari 3370</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنتَ مَوْلَىٰنَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ</p>
+  <p class="en">Allah does not require of any soul more than what it can afford. For it are its good deeds and upon it are its bad deeds. Our Lord! Do not hold us accountable if we forget or make a mistake. Our Lord! Do not burden us with that which we have no ability to bear. Pardon us, and forgive us, and have mercy upon us. You are our Master, so help us against the disbelieving people.</p>
+  <a class="cite" href="https://quran.com/2/286" target="_blank" rel="noopener">Al-Baqarah 2:286</a>
+</div>
+
+<section id="duas" data-label="Concluding duas">
+  <div class="ritual">Concluding duas</div>
+  <ul class="duas">
+    <li>Ya Allah, <span class="name">Ya &lsquo;Alim</span>, grant us knowledge that benefits our families and our communities, and protect us from knowledge that carries no benefit.</li>
+    <li>Ya Allah, <span class="name">Ya Hakim</span>, grant us wisdom to discern truth from falsehood, and give us clarity in an age of synthetic deception and confusion.</li>
+    <li>Ya Allah, <span class="name">Ya Rashid</span>, guide our hands and minds to master the tools of this world to serve Your creation, and keep our intentions firmly anchored in Your pleasure.</li>
+    <li>Ya Allah, <span class="name">Ya Qawiyy</span>, inspire our youth to lead with excellence, to become ethical pioneers of beneficial science and technology, and to carry moral clarity into their work.</li>
+    <li>Ya Allah, <span class="name">Ya Hafiz</span>, protect the intellects and hearts of our children from mental laziness and spiritual heedlessness.</li>
+    <li>Ya Allah, <span class="name">Ya Hadi</span>, keep our hearts humble before Your majesty, and never allow our technical capability to blind us to our complete dependence upon You.</li>
+  </ul>
+</section>
+
+<div class="passage">
+  <p class="ar" lang="ar">عِبَادَ اللَّهِ إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ وَإِيتَاءِ ذِي الْقُرْبَىٰ وَيَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ وَالْبَغْيِ يَعِظُكُمْ لَعَلَّكُمْ تَذَكَّرُونَ</p>
+  <a class="cite" href="https://quran.com/16/90" target="_blank" rel="noopener">An-Nahl 16:90</a>
+  <p class="ar" lang="ar">اذْكُرُوا اللَّهَ الْعَظِيمَ يَذْكُرْكُمْ وَاشْكُرُوهُ عَلَىٰ نِعَمِهِ يَزِدْكُمْ وَلَذِكْرُ اللَّهِ أَكْبَرُ وَاللَّهُ يَعْلَمُ مَا تَصْنَعُونَ</p>
+  <p class="ar" lang="ar">أَقِيمُوا الصَّلَاةَ</p>
+  <p class="en">Servants of Allah! Indeed, Allah commands justice, the doing of good, and liberality to kith and kin, and He forbids all shameful deeds, and injustice and rebellion. He instructs you, so that you may remember. Remember Allah the Almighty, and He will remember you. And be thankful to Him, and He will increase you in bounty. And the remembrance of Allah is the greatest. And Allah knows all that you do. Establish the prayer.</p>
+</div>
+
+<p class="disclaimer"><span class="added">Added from the standard template - confirm you say this here</span>If there is anything that I have said that is good and you gain value from it, it is surely from Allah. If there is anything I have said that may be incorrect, it is due to my own shortcomings, for that I ask forgiveness from Allah the most merciful and from you.</p>
+
+<div class="end">End of khutba</div>
+
+<details class="parking">
+  <summary>Parking lot - not for delivery</summary>
+  <ul>
+    <li>4 of 5 objectives of shariah can&rsquo;t be fulfilled / preserved with Ihsan without AI: religion, life, intellect, (family), wealth</li>
+    <li>= fard kifaya to fulfill</li>
+  </ul>
+</details>
+
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var KEY = "khutba51:";
+  function get(k) { try { return localStorage.getItem(KEY + k); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(KEY + k, v); } catch (e) {} }
+
+  /* theme */
+  var themeBtn = document.getElementById("themeBtn");
+  function isDark() {
+    var t = root.getAttribute("data-theme");
+    if (t) return t === "dark";
+    return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function paintThemeLabel() { themeBtn.textContent = isDark() ? "Light" : "Dark"; }
+  var savedTheme = get("theme");
+  if (savedTheme === "dark" || savedTheme === "light") root.setAttribute("data-theme", savedTheme);
+  paintThemeLabel();
+  themeBtn.addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    set("theme", next);
+    paintThemeLabel();
+  });
+
+  /* text size */
+  var scale = parseFloat(get("scale"));
+  if (!(scale >= 0.8 && scale <= 1.6)) scale = 1;
+  function applyScale() { root.style.setProperty("--scale", scale.toFixed(2)); }
+  applyScale();
+  document.getElementById("smaller").addEventListener("click", function () {
+    scale = Math.max(0.8, Math.round((scale - 0.1) * 10) / 10); applyScale(); set("scale", scale);
+  });
+  document.getElementById("larger").addEventListener("click", function () {
+    scale = Math.min(1.6, Math.round((scale + 0.1) * 10) / 10); applyScale(); set("scale", scale);
+  });
+
+  /* jump menu */
+  var sec = document.getElementById("sec");
+  sec.addEventListener("click", function (e) { if (e.target.closest(".jump a")) sec.open = false; });
+  document.addEventListener("click", function (e) { if (sec.open && !sec.contains(e.target)) sec.open = false; });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") sec.open = false; });
+
+  /* current-section tracking, offset by the sticky bar */
+  var current = document.getElementById("current");
+  var markers = Array.prototype.slice.call(document.querySelectorAll("[data-label]"));
+  function updateCurrent() {
+    var barH = document.querySelector(".bar").getBoundingClientRect().height;
+    var line = barH + 24;
+    var label = markers[0].getAttribute("data-label");
+    for (var i = 0; i < markers.length; i++) {
+      if (markers[i].getBoundingClientRect().top <= line) label = markers[i].getAttribute("data-label");
+      else break;
+    }
+    var tmp = document.createElement("span"); tmp.innerHTML = label;
+    if (current.textContent !== tmp.textContent) current.textContent = tmp.textContent;
+  }
+
+  /* scroll persistence: survives Safari discarding the tab */
+  var saveTimer = null;
+  window.addEventListener("scroll", function () {
+    updateCurrent();
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () { set("y", String(Math.round(window.scrollY))); }, 250);
+  }, { passive: true });
+  window.addEventListener("pagehide", function () { set("y", String(Math.round(window.scrollY))); });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") set("y", String(Math.round(window.scrollY)));
+  });
+
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  var y = parseInt(get("y"), 10);
+  function restore() {
+    if (!location.hash && y > 0) {
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(0, y);
+      root.style.scrollBehavior = "";
+    }
+    updateCurrent();
+  }
+  /* offline: cache this khutba on the device (https only) */
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(function () {});
+  }
+
+  /* keep the screen awake where iOS allows it */
+  var lock = null;
+  function wake() {
+    if (!("wakeLock" in navigator) || lock || document.visibilityState !== "visible") return;
+    navigator.wakeLock.request("screen").then(function (l) {
+      lock = l; root.classList.add("awake");
+      l.addEventListener("release", function () { lock = null; root.classList.remove("awake"); });
+    }).catch(function () {});
+  }
+  wake();
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") wake(); });
+  document.addEventListener("click", wake);
+  document.addEventListener("touchend", wake, { passive: true });
+
+  if (document.readyState === "complete") restore();
+  else window.addEventListener("load", restore);
+})();
+</script>
+</body>
+</html>
