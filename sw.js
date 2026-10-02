@@ -1,7 +1,7 @@
 /* Khutbas offline cache.
    Cache-first so the page opens instantly with no signal; each open also
    refreshes the cache in the background, so edits show up on the next open. */
-var CACHE = "khutbas-v1";
+var CACHE = "khutbas-v2";
 var PRECACHE = [
   "./", "./index.html",
   "./51/", "./51/index.html", "./51/manifest.webmanifest",
