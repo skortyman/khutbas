@@ -1,11 +1,13 @@
 /* Khutbas offline cache.
    Cache-first so the page opens instantly with no signal; each open also
    refreshes the cache in the background, so edits show up on the next open. */
-var CACHE = "khutbas-v2";
+var CACHE = "khutbas-v3";
 var PRECACHE = [
   "./", "./index.html",
   "./51/", "./51/index.html", "./51/manifest.webmanifest",
-  "./51/icon-180.png", "./51/icon-512.png"
+  "./51/icon-180.png", "./51/icon-512.png",
+  "./06/", "./06/index.html", "./06/manifest.webmanifest",
+  "./06/icon-180.png", "./06/icon-512.png"
 ];
 
 self.addEventListener("install", function (e) {

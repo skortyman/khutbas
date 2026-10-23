@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>06 Khutba - Balance in Islam</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Khutba 06">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#11161C">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+:root {
+  --ground: #F4F6F8;
+  --surface: #FFFFFF;
+  --ink: #151C24;
+  --ink-soft: #4A5561;
+  --accent: #B07A1E;
+  --cue: #5A7D8C;
+  --rule: #DDE3E9;
+  --bar: rgba(244, 246, 248, 0.94);
+  --scale: 1;
+  --f-serif: ui-serif, "New York", Georgia, "Times New Roman", serif;
+  --f-sans: -apple-system, system-ui, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --f-arabic: system-ui, "Geeza Pro", "Al Bayan", "Baghdad", "Traditional Arabic", serif;
+  --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --bar-h: 3.25rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #11161C;
+    --surface: #182028;
+    --ink: #E8EDF2;
+    --ink-soft: #9FAEBC;
+    --accent: #E0A94A;
+    --cue: #7FA8BA;
+    --rule: #26313B;
+    --bar: rgba(17, 22, 28, 0.94);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #11161C;
+  --surface: #182028;
+  --ink: #E8EDF2;
+  --ink-soft: #9FAEBC;
+  --accent: #E0A94A;
+  --cue: #7FA8BA;
+  --rule: #26313B;
+  --bar: rgba(17, 22, 28, 0.94);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html {
+  font-size: calc(125% * var(--scale));
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px) + 1rem);
+}
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  line-height: 1.55;
+}
+
+/* ---------- sticky bar ---------- */
+.bar {
+  position: sticky; top: 0; z-index: 10;
+  height: calc(var(--bar-h) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  display: flex; align-items: center; gap: 0.75rem;
+  padding-inline: max(1rem, env(safe-area-inset-left));
+  background: var(--bar);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.72rem;
+}
+.bar .where {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; line-height: 1.2;
+}
+.bar .where .ttl {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--f-serif); font-size: 0.85rem;
+}
+.bar .where .ttl b {
+  font-family: var(--f-mono); font-weight: 600; font-size: 0.66rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+}
+.bar .where .now {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font: 600 0.6rem/1.35 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--cue);
+}
+.ctl { display: flex; gap: 0.35rem; }
+.ctl button {
+  font: 600 0.7rem/1 var(--f-mono);
+  letter-spacing: 0.04em;
+  min-width: 2.4rem; height: 2.2rem; padding-inline: 0.6rem;
+  border: 1px solid var(--rule); border-radius: 0.5rem;
+  background: var(--surface); color: var(--ink); cursor: pointer;
+}
+.ctl button:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+
+/* ---------- jump menu ---------- */
+.sec > summary {
+  list-style: none; cursor: pointer;
+  display: inline-flex; align-items: center;
+  font: 600 0.7rem/1 var(--f-mono); letter-spacing: 0.04em;
+  height: 2.2rem; padding-inline: 0.7rem;
+  border: 1px solid var(--accent); border-radius: 0.5rem;
+  background: var(--surface); color: var(--accent);
+}
+.sec > summary::-webkit-details-marker { display: none; }
+.sec > summary .c, .sec[open] > summary .o { display: none; }
+.sec[open] > summary .c { display: inline; }
+.sec[open] > summary { background: var(--accent); color: var(--ground); }
+.jump {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 9;
+  max-height: calc(100vh - var(--bar-h)); overflow-y: auto;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  padding-block: 0.75rem 1rem;
+  padding-inline: 1rem;
+}
+.awake .bar .now::before { content: "\25CF\00a0"; color: var(--accent); }
+.ctl .needs-js { display: none; }
+.js .ctl .needs-js { display: inline-block; }
+.jump ol { list-style: none; margin: 0 auto; padding: 0; max-width: 34rem; display: grid; gap: 0.25rem; }
+.jump a {
+  display: flex; gap: 0.75rem; align-items: baseline;
+  padding: 0.55rem 0.6rem; border-radius: 0.4rem;
+  color: var(--ink); text-decoration: none; font-size: 0.85rem;
+}
+.jump a:hover { background: var(--ground); }
+.jump a .n { font-family: var(--f-serif); color: var(--accent); width: 1.2rem; flex: none; }
+.jump li.grp a {
+  display: flex; justify-content: space-between; align-items: center;
+  font: 600 0.64rem/1 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cue); padding: 0.75rem 0.6rem 0.4rem; margin-top: 0.3rem;
+  border-bottom: 1px solid var(--rule); border-radius: 0;
+}
+.jump li.grp a::after { content: "Opening \2193"; font-size: 0.55rem; opacity: 0.8; }
+.jump a.jalsa-link {
+  background: var(--ground); border: 1px dashed var(--cue);
+  font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--cue); margin-block: 0.3rem;
+}
+
+/* ---------- page ---------- */
+main {
+  max-width: 34rem; margin-inline: auto;
+  padding-inline: max(1.25rem, env(safe-area-inset-left));
+  padding-block: 1.5rem 4rem;
+}
+.masthead { padding-block: 0.5rem 1.5rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem; }
+.masthead .kicker {
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--cue);
+}
+.masthead h1 {
+  font-family: var(--f-serif); font-weight: 600;
+  font-size: 1.7rem; line-height: 1.2; margin: 0.5rem 0 0;
+  text-wrap: balance;
+}
+
+.masthead .updated {
+  margin-top: 0.6rem;
+  font: 600 0.6rem/1.3 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+}
+
+/* legal maxim: a principle of the jurists, not revelation - no gold rail */
+.maxim {
+  margin-block: 1rem 1.5rem; padding: 1.1rem 1rem 1rem;
+  border-block: 1px solid var(--rule);
+  text-align: center;
+}
+.maxim .ar { text-align: center; font-size: 1.75rem; margin-bottom: 0.35rem; }
+.maxim-en {
+  font-family: var(--f-serif); font-weight: 600; font-size: 1.12rem; line-height: 1.4;
+  margin: 0; text-wrap: balance;
+}
+.maxim .cite { margin-top: 0.75rem; }
+.maxim .cite em { font-style: normal; text-transform: none; letter-spacing: 0.02em; }
+
+/* ritual label rule: unnumbered, structural */
+.ritual {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-block: 2.5rem 1.25rem;
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.ritual::before, .ritual::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+/* content sections: numbered argument */
+section.arg { margin-block: 2.25rem 0; }
+.arg h2 {
+  display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.5rem; align-items: baseline;
+  font-family: var(--f-serif); font-weight: 600;
+  font-size: 1.3rem; line-height: 1.25; margin: 0 0 1rem;
+  text-wrap: balance;
+}
+.arg h2.plain { grid-template-columns: 1fr; }
+.arg h2 .n { color: var(--accent); font-size: 1.45rem; }
+
+p { margin: 0 0 0.85rem; }
+ul, ol.steps { margin: 0 0 1rem; padding-left: 1.15rem; }
+li { margin-bottom: 0.4rem; }
+li > ul { margin-top: 0.4rem; margin-bottom: 0.2rem; }
+li::marker { color: var(--ink-soft); }
+strong { font-weight: 650; }
+.lead { font-weight: 600; }
+
+/* ---------- Arabic shapes ---------- */
+.passage {
+  background: var(--surface);
+  border-right: 3px solid var(--accent);
+  border-radius: 0.6rem 0 0 0.6rem;
+  padding: 1rem 1.15rem;
+  margin-block: 0.75rem 1.25rem;
+}
+.ar {
+  font-family: var(--f-arabic);
+  font-size: 1.55rem; line-height: 1.95;
+  direction: rtl; text-align: right;
+  margin: 0 0 0.6rem;
+}
+.en { color: var(--ink-soft); font-size: 0.9rem; margin: 0; }
+.en + .ar { margin-top: 1rem; }
+.cite {
+  display: block; margin-top: 0.6rem;
+  font: 600 0.62rem/1.3 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cue);
+}
+a.cite {
+  width: fit-content;
+  text-decoration: underline dotted var(--cue); text-underline-offset: 3px;
+}
+a.cite::after { content: " \2197"; }
+a.cite:hover { color: var(--accent); }
+.cite + .ar { margin-top: 1rem; }
+.ar-inline {
+  font-family: var(--f-arabic); font-size: 1.2em;
+  direction: rtl; unicode-bidi: isolate;
+}
+.quote-en { font-weight: 650; color: var(--ink); font-size: 1rem; margin: 0; }
+
+/* ---------- cues: never spoken ---------- */
+.pause {
+  display: flex; justify-content: center; margin-block: 1.1rem;
+}
+.pause span {
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--cue); border: 1.5px dotted var(--cue); border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+}
+.pause span::before { content: "\25CB\00a0\00a0"; }
+
+.transition {
+  display: flex; align-items: center; gap: 0.6rem; margin-block: 1.25rem;
+  font: 600 0.6rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--cue);
+}
+.transition::before, .transition::after {
+  content: ""; flex: 1; border-top: 1.5px dotted var(--cue);
+}
+
+.emph {
+  position: relative;
+  border-left: 3px dotted var(--cue);
+  padding-left: 0.9rem; margin-block: 0.75rem 1rem;
+}
+.emph::before {
+  content: "Emphasize";
+  display: block; margin-bottom: 0.45rem;
+  font: 600 0.58rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--cue);
+}
+.emph ul { margin-bottom: 0; }
+
+.jalsa {
+  margin-block: 3rem;
+  border: 2px dashed var(--cue); border-radius: 0.8rem;
+  padding: 1.5rem 1rem; text-align: center;
+  background: var(--surface);
+}
+.jalsa .big {
+  font: 700 1rem/1.2 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--cue);
+}
+.jalsa .small {
+  font: 600 0.6rem/1.4 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-soft); margin-top: 0.5rem;
+}
+
+/* ---------- duas ---------- */
+.duas { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 0.85rem; }
+.duas li { margin: 0; padding-left: 0.9rem; border-left: 2px solid var(--rule); }
+.duas .name { color: var(--accent); font-weight: 650; }
+
+.disclaimer { font-style: italic; color: var(--ink-soft); font-size: 0.9rem; margin-top: 2rem; }
+
+details.parking {
+  margin-top: 3rem; border: 1px solid var(--rule); border-radius: 0.6rem;
+  padding: 0.75rem 1rem; background: var(--surface); font-size: 0.85rem;
+}
+details.parking summary {
+  cursor: pointer; font: 600 0.62rem/1.4 var(--f-mono); letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--cue);
+}
+details.parking ul { margin-top: 0.75rem; }
+
+.end {
+  text-align: center; margin-top: 2.5rem;
+  font: 600 0.6rem/1 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft);
+}
+
+@media (max-width: 30rem) {
+  html { font-size: calc(106.25% * var(--scale)); }
+  .bar .where .ttl { font-size: 0.8rem; }
+  .ar { font-size: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* ---------- print fallback ---------- */
+@media print {
+  :root, :root[data-theme="dark"] {
+    --ground: #fff; --surface: #fff; --ink: #000; --ink-soft: #333;
+    --accent: #000; --cue: #555; --rule: #bbb;
+  }
+  html { font-size: 12pt; }
+  .bar, .jump, details.parking { display: none !important; }
+  main { max-width: none; padding: 0; }
+  .passage { border: 1px solid #999; border-right-width: 3px; break-inside: avoid; }
+  section.arg { break-before: auto; }
+  .arg h2, .ritual { break-after: avoid; }
+  .jalsa { break-before: page; break-inside: avoid; }
+  .duas li, .emph { break-inside: avoid; }
+}
+
+/* khutba 06: word-study glosses */
+.term { font-weight: 650; }
+.term .ar-inline { font-weight: 400; }
+.term em { font-family: var(--f-mono); font-style: normal; font-size: 0.72em; letter-spacing: 0.04em; color: var(--cue); }
+.src { margin: -0.4rem 0 1.25rem; }
+.notes { margin-top: -0.25rem; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="where">
+    <span class="ttl"><b>06 Khutba</b> - Balance in Islam</span>
+    <span class="now" id="current">First khutba &middot; Opening</span>
+  </div>
+  <div class="ctl">
+    <details class="sec" id="sec">
+      <summary><span class="o">Sections</span><span class="c">Close</span></summary>
+      <nav class="jump" aria-label="Sections">
+    <ol>
+        <li class="grp"><a href="#k1">First khutba</a></li>
+        <li><a href="#s1"><span class="n">1</span>Introduction</a></li>
+        <li><a href="#s2"><span class="n">2</span>Tafseer Surah Al-Ma&rsquo;un</a></li>
+        <li><a href="#jalsa" class="jalsa-link">&#9675;&nbsp; Jalsa - sit 45s, resume here</a></li>
+        <li class="grp"><a href="#k2">Second khutba</a></li>
+        <li><a href="#s3"><span class="n">3</span>Conclusion</a></li>
+        <li><a href="#close"><span class="n">&#10022;</span>Closing</a></li>
+      </ol>
+      </nav>
+    </details>
+    <button type="button" class="needs-js" id="smaller" aria-label="Smaller text">A&minus;</button>
+    <button type="button" class="needs-js" id="larger" aria-label="Larger text">A+</button>
+    <button type="button" class="needs-js" id="themeBtn" aria-label="Toggle light or dark">Dark</button>
+  </div>
+</header>
+
+
+<main>
+
+<div class="masthead">
+  <div class="kicker">06 Khutba</div>
+  <h1>Balance in Islam: Surah Al-Ma&rsquo;un</h1>
+  <div class="updated">Last updated: 2026-10-23 11:18 EDT</div>
+</div>
+
+<!-- ======================= FIRST KHUTBA ======================= -->
+<div class="ritual" id="k1" data-label="First khutba &middot; Opening">First khutba &middot; Opening</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">إِنَّ الْحَمْدَ لِلَّهِ نَحْمَدُهُ وَنَسْتَعِينُهُ وَنَسْتَغْفِرُهُ وَنَعُوذُ بِاللَّهِ مِنْ شُرُورِ أَنْفُسِنَا وَمِنْ سَيِّئَاتِ أَعْمَالِنَا مَن يَهْدِهِ اللَّهُ فَلَا مُضِلَّ لَهُ وَمَن يُضْلِلْ فَلَا هَادِيَ لَهُ وَأَشْهَدُ أَن لَّا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ صَلَّىٰ اللَّهُ عَلَيْهِ وَسَلَّمَ</p>
+  <p class="en">All praise is due to Allah. We praise Him, we seek His help, we seek His forgiveness, and we seek refuge in Allah from the evil within ourselves and our evil deeds. Whoever Allah guides, there is none to misguide him. Whoever Allah leads astray, there is none to guide him. I testify there is no god but Allah alone, without any partners, and that Muhammad, peace and blessings be upon him, is His servant and His messenger.</p>
+  <a class="cite" href="https://sunnah.com/nasai:1404" target="_blank" rel="noopener">Khutbat al-Hajah &middot; Sunan an-Nasa&rsquo;i 1404</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">يَٰأَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا يُصْلِحْ لَكُمْ أَعْمَالَكُمْ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ وَمَن يُطِعِ اللَّهَ وَرَسُولَهُ فَقَدْ فَازَ فَوْزًا عَظِيمًا</p>
+  <p class="en">O you who have believed! Fear Allah and speak words of appropriate justice. He will correct for you your deeds and forgive you your sins. And whoever obeys Allah and His Messenger has certainly attained a great success.</p>
+  <a class="cite" href="https://quran.com/33/70-71" target="_blank" rel="noopener">Al-Ahzab 33:70-71</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">أمَّا بعدُ، فإنَّ أصدقَ الحديثِ كتابُ اللهِ، وخيرَ الهديِ هديُ محمَّدٍ صلَّى اللهُ عليه وسلَّم، وشرَّ الأمورِ مُحدَثاتُها، وكلَّ مُحدَثةٍ بدعةٌ، وكلَّ بدعةٍ ضلالةٌ، وكلَّ ضلالةٍ في النَّارِ</p>
+  <p class="en">To proceed: As for what follows: the truest speech is the Book of Allah, and the best guidance is the guidance of Muhammad, may Allah bless him and grant him peace. The worst of matters are those newly introduced (into the religion); every newly introduced matter is an innovation, every innovation is misguidance, and every misguidance is in the Fire.</p>
+  <a class="cite" href="https://sunnah.com/nasai:1578" target="_blank" rel="noopener">Sunan an-Nasa&rsquo;i 1578</a>
+</div>
+
+<!-- ---------- 1 ---------- -->
+<section class="arg" id="s1" data-label="1 &middot; Introduction">
+  <h2><span class="n">1</span><span>Introduction</span></h2>
+  <p class="lead">Recite 7 verses of Surah Ma&rsquo;un (#107)</p>
+  <div class="passage">
+    <p class="ar" lang="ar">أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ ۝١ فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ ۝٢ وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ ۝٣ فَوَيْلٌ لِّلْمُصَلِّينَ ۝٤ الَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ ۝٥ الَّذِينَ هُمْ يُرَاءُونَ ۝٦ وَيَمْنَعُونَ الْمَاعُونَ ۝٧</p>
+    <a class="cite" href="https://quran.com/107/1-7" target="_blank" rel="noopener">Al-Ma&rsquo;un 107:1-7</a>
+  </div>
+
+  <p class="lead">What is the core of religion?</p>
+  <a class="cite src" href="https://www.youtube.com/watch?v=-Go_0tKP8BA" target="_blank" rel="noopener">Hamza Yusuf</a>
+  <ul>
+    <li><strong>Christianity</strong>
+      <ul>
+        <li>Ten Commandments can be reduced to [Martin Luther]:
+          <ul>
+            <li>Love God with all your heart</li>
+            <li>Love your neighbor as yourself</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><strong>Judaism</strong> [Rabbi Gamael]
+      <ul>
+        <li>Love God</li>
+        <li>Love your neighbor</li>
+      </ul>
+    </li>
+    <li><strong>Islam</strong> [Fakhruddin Al-Razi]</li>
+  </ul>
+
+  <div class="maxim">
+    <p class="ar" lang="ar">عِبَادَةُ الْخَالِقِ وَخِدْمَةُ الْخَلْقِ</p>
+    <p class="maxim-en">Worship the Creator. Serve the creation.</p>
+    <span class="cite">Fakhruddin Al-Razi &middot; <em>Ibadat al-khaliq wa khidmat al-khalq</em></span>
+  </div>
+
+  <ul>
+    <li>Trust in Allah &amp; Tie Your Camel</li>
+    <li><strong>Balance in Islam</strong></li>
+  </ul>
+
+  <p class="lead">Questions:</p>
+  <ol class="steps">
+    <li>Allah talks about two different groups of people in Surah Ma&rsquo;un. How are these two groups related?</li>
+    <li>There are 5 pillars in Islam. Can you have a building with just pillars?</li>
+    <li>Do I have the right balance between worshiping the Creator (Allah) and serving His creation?</li>
+  </ol>
+</section>
+
+<!-- ---------- 2 ---------- -->
+<section class="arg" id="s2" data-label="2 &middot; Tafseer Surah Al-Ma&rsquo;un">
+  <h2><span class="n">2</span><span>Tafseer Surah Al-Ma&rsquo;un</span></h2>
+  <span class="cite src">Source: Tafseer Al-Shawkani, Nouman Ali Khan</span>
+
+  <div class="passage">
+    <p class="ar" lang="ar">أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ</p>
+    <p class="quote-en">Have you seen him who denies the Recompense?</p>
+    <a class="cite" href="https://quran.com/107/1" target="_blank" rel="noopener">Al-Ma&rsquo;un 107:1</a>
+  </div>
+  <ul class="notes">
+    <li><span class="term"><span class="ar-inline" lang="ar">الدِّين</span> <em>deen</em></span> = Islam</li>
+    <li><span class="term"><span class="ar-inline" lang="ar">الدِّين</span> <em>deen</em></span> = recompense (payback); day of resurrection
+      <ul>
+        <li>people afraid of consequences; easier to do bad things when there are no consequences to be afraid of</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="passage">
+    <p class="ar" lang="ar">فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ</p>
+    <p class="quote-en">For that is the one who drives away the orphan</p>
+    <a class="cite" href="https://quran.com/107/2" target="_blank" rel="noopener">Al-Ma&rsquo;un 107:2</a>
+  </div>
+  <ul class="notes">
+    <li><span class="term"><span class="ar-inline" lang="ar">يَدُعُّ</span> <em>yadu&rsquo;a</em></span> = push someone with expectation that they will not push back; bully!</li>
+    <li><span class="term"><span class="ar-inline" lang="ar">فَذَٰلِكَ</span> <em>fa-zalik</em></span>: used to belittle, put distance between oneself and the object, &ldquo;that one&rdquo;, &ldquo;over there&rdquo;</li>
+    <li>Quraish didn&rsquo;t give inheritance to women and children</li>
+    <li><span class="term"><span class="ar-inline" lang="ar">الْمِسْكِين، الْيَتِيم</span> <em>miskin, yatim</em></span>: Allah uses singular, so oppressors think of specific people</li>
+  </ul>
+
+  <div class="passage">
+    <p class="ar" lang="ar">وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ</p>
+    <p class="quote-en">And does not encourage the feeding of the poor.</p>
+    <a class="cite" href="https://quran.com/107/3" target="_blank" rel="noopener">Al-Ma&rsquo;un 107:3</a>
+  </div>
+  <ul class="notes">
+    <li><span class="term"><span class="ar-inline" lang="ar">طَعَامِ الْمِسْكِينِ</span> <em>ta&rsquo;aam al-miskin</em></span>: food belongs to the poor, not for the poor</li>
+  </ul>
+
+  <div class="passage">
+    <p class="ar" lang="ar">فَوَيْلٌ لِّلْمُصَلِّينَ</p>
+    <p class="quote-en">So woe to those who pray</p>
+    <a class="cite" href="https://quran.com/107/4" target="_blank" rel="noopener">Al-Ma&rsquo;un 107:4</a>
+  </div>
+  <ul class="notes">
+    <li><span class="term"><span class="ar-inline" lang="ar">وَيْلٌ</span> <em>wayl</em></span>: also used to admonish the one who cheats in business (al-mutaffifoon) and the one who writes something and falsely attributes it to Allah (humaza)</li>
+    <li><span class="term"><span class="ar-inline" lang="ar">الْمُصَلِّينَ</span> <em>al-musalloon</em></span>: Allah ends the Ayah here and wants us to think: &ldquo;Is he talking about me?&rdquo;</li>
+    <li>People that commit crimes against each other are likely to commit crimes against Allah</li>
+  </ul>
+
+  <p class="lead">In next section of surah, Allah changes to plural</p>
+
+  <div class="passage">
+    <p class="ar" lang="ar">الَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ</p>
+    <p class="quote-en">Who are they that are unmindful of their prayer</p>
+    <a class="cite" href="https://quran.com/107/5" target="_blank" rel="noopener">Al-Ma&rsquo;un 107:5</a>
+  </div>
+  <p class="term"><span class="ar-inline" lang="ar">سَاهُونَ</span> <em>sahoon</em>:</p>
+  <ul class="notes">
+    <li>sajda sahwa; to forget, act out of neglectfulness, carelessness; not paying enough attention, treating as a priority;</li>
+    <li>will pray when it&rsquo;s convenient</li>
+    <li>not doing wudu properly, not praying on time; praying quickly;</li>
+    <li>praying feels like an obstacle</li>
+    <li><span class="term"><span class="ar-inline" lang="ar">عَن صَلَاتِهِمْ</span> <em>&lsquo;an salatihim</em></span>: about salah, not during salah; getting distracted during salah is a different matter</li>
+  </ul>
+
+  <div class="passage">
+    <p class="ar" lang="ar">الَّذِينَ هُمْ يُرَاءُونَ</p>
+    <p class="quote-en">Those who make show [of their deeds]</p>
+    <a class="cite" href="https://quran.com/107/6" target="_blank" rel="noopener">Al-Ma&rsquo;un 107:6</a>
+  </div>
+  <p class="lead">Show off:</p>
+  <ul class="notes">
+    <li><span class="term"><span class="ar-inline" lang="ar">الرِّيَاء</span> <em>riya</em></span>: arrogance is harder to spot than a black ant on a black stone on a dark night</li>
+    <li>scholars say to strike balance; pray fard in mosque and extras at home</li>
+  </ul>
+
+  <div class="passage">
+    <p class="ar" lang="ar">وَيَمْنَعُونَ الْمَاعُونَ</p>
+    <p class="quote-en">And withhold [simple] assistance.</p>
+    <a class="cite" href="https://quran.com/107/7" target="_blank" rel="noopener">Al-Ma&rsquo;un 107:7</a>
+  </div>
+  <p class="term"><span class="ar-inline" lang="ar">الْمَاعُون</span> <em>ma&rsquo;un</em>:</p>
+  <ul class="notes">
+    <li>something minor: the loss of which would not decrease your wealth</li>
+    <li>borrow bucket, water, utensils</li>
+    <li>you can&rsquo;t possibly be cheap on it</li>
+    <li>only reason not to share: just don&rsquo;t want others to benefit</li>
+  </ul>
+</section>
+
+<div class="ritual" data-label="First khutba &middot; Conclusion">First khutba &middot; Conclusion</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">أَقُولُ قَوْلِي هَٰذَا وَأَسْتَغْفِرُ اللَّهَ لِي وَلَكُمْ وَلِسَائِرِ الْمُسْلِمِينَ فَاسْتَغْفِرُوهُ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ</p>
+  <p class="en">I say this saying of mine, and I seek forgiveness from Allah for myself and for you, and for the rest of the Muslims. So ask Him for forgiveness. Indeed, He is the Forgiving, the Merciful.</p>
+</div>
+
+<!-- ======================= JALSA ======================= -->
+<div class="jalsa" id="jalsa" data-label="Jalsa">
+  <div class="big">&#9675;&nbsp; Jalsa &middot; 45s</div>
+  <div class="small">Sit. Second khutba begins below.</div>
+</div>
+
+<!-- ======================= SECOND KHUTBA ======================= -->
+<div class="ritual" id="k2" data-label="Second khutba &middot; Opening">Second khutba &middot; Opening</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">بِسْمِ اللَّهِ وَالْحَمْدُ لِلَّهِ وَالصَّلَاةُ وَالسَّلَامُ عَلَىٰ رَسُولِ اللَّهِ صَلَّىٰ اللَّهُ عَلَيْهِ وَسَلَّمَ</p>
+  <p class="en">In the name of Allah, and all praise is due to Allah, and may Allah's blessings and peace be upon the Messenger of Allah, peace and blessings be upon him.</p>
+</div>
+
+<!-- ---------- 3 ---------- -->
+<section class="arg" id="s3" data-label="3 &middot; Conclusion">
+  <h2><span class="n">3</span><span>Conclusion</span></h2>
+  <ul>
+    <li><strong>Chesed Shel Emeth Cemetery</strong></li>
+    <li>University City, Missouri</li>
+    <li>Vandalized on Monday Feb 20, 2017</li>
+    <li>170 gravestones overturned</li>
+    <li>LaunchGood.com campaign, titled &ldquo;Muslims Unite to Repair Jewish Cemetery,&rdquo;</li>
+    <li>By Thursday morning (within 4 days), raised $115k</li>
+  </ul>
+  <a class="cite src" href="http://www.jta.org/2017/02/23/news-opinion/united-states/muslim-campaign-raises-over-100000-for-vandalized-jewish-cemetery" target="_blank" rel="noopener">JTA &middot; Feb 23, 2017</a>
+
+  <p class="lead">Questions:</p>
+  <ol class="steps">
+    <li>Allah talks about two different groups of people in Surah Ma&rsquo;un. How are these two groups related?
+      <ul>
+        <li><strong>These two groups are in fact the same; people who withhold the rights of fellow mankind are unlikely to fulfill their responsibilities to Allah and vice versa</strong></li>
+      </ul>
+    </li>
+    <li>There are 5 pillars in Islam. Can you have a building with just pillars?</li>
+    <li>Do I have the right balance between worshiping the Creator (Allah) and serving His creation?
+      <ul>
+        <li><strong>Are you trusting in Allah and tying your camel?</strong></li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<div class="ritual" id="close" data-label="Second khutba &middot; Conclusion">Second khutba &middot; Conclusion</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+  <p class="ar" lang="ar">اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+  <p class="en">O Allah, send blessings upon Muhammad as You sent blessings upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious. O Allah, grant blessings to Muhammad and upon the family of Muhammad as You granted blessings to Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious.</p>
+  <a class="cite" href="https://sunnah.com/bukhari:3370" target="_blank" rel="noopener">Sahih al-Bukhari 3370</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنتَ مَوْلَىٰنَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ</p>
+  <p class="en">Allah does not require of any soul more than what it can afford. For it are its good deeds and upon it are its bad deeds. Our Lord! Do not hold us accountable if we forget or make a mistake. Our Lord! Do not burden us with that which we have no ability to bear. Pardon us, and forgive us, and have mercy upon us. You are our Master, so help us against the disbelieving people.</p>
+  <a class="cite" href="https://quran.com/2/286" target="_blank" rel="noopener">Al-Baqarah 2:286</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">عِبَادَ اللَّهِ إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ وَإِيتَاءِ ذِي الْقُرْبَىٰ وَيَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ وَالْبَغْيِ يَعِظُكُمْ لَعَلَّكُمْ تَذَكَّرُونَ</p>
+  <a class="cite" href="https://quran.com/16/90" target="_blank" rel="noopener">An-Nahl 16:90</a>
+  <p class="ar" lang="ar">اذْكُرُوا اللَّهَ الْعَظِيمَ يَذْكُرْكُمْ وَاشْكُرُوهُ عَلَىٰ نِعَمِهِ يَزِدْكُمْ وَلَذِكْرُ اللَّهِ أَكْبَرُ وَاللَّهُ يَعْلَمُ مَا تَصْنَعُونَ</p>
+  <p class="ar" lang="ar">أَقِيمُوا الصَّلَاةَ</p>
+  <p class="en">Servants of Allah! Indeed, Allah commands justice, the doing of good, and liberality to kith and kin, and He forbids all shameful deeds, and injustice and rebellion. He instructs you, so that you may remember. Remember Allah the Almighty, and He will remember you. And be thankful to Him, and He will increase you in bounty. And the remembrance of Allah is the greatest. And Allah knows all that you do. Establish the prayer.</p>
+</div>
+
+<p class="disclaimer">If there is anything that I have said that is good and you gain value from it, it is surely from Allah. If there is anything I have said that may be incorrect, it is due to my own shortcomings, for that I ask forgiveness from Allah the most merciful and from you.</p>
+
+<div class="end">End of khutba</div>
+
+<details class="parking">
+  <summary>Parking lot - not for delivery</summary>
+  <ul>
+    <li>Fakhruddin Razi Muslim theologian and philosopher. He also wrote on medicine, physics, astronomy, literature, history and law. He left a very rich corpus of philosophical and theological works that reveals influence from the works of ibn Sina, Abu'l-Barakāt al-Baghdādī and al-Ghazali.</li>
+    <li>Quote image in the Doc, attributed to Fakhr Al-Din Al-Razi (source: oldquotes.com, unverified): &ldquo;Submission, when it is submission to the truth, and when the truth is known to be both beautiful and merciful, has nothing in common with fatalism or stoicism as these terms are understood in the Western tradition, because its motivation is different. According to Fakhr ad-Din ar-Razi, one of the great commentators upon the Quran: The worship of the eyes is weeping, the worship of the ears is listening, the worship of the tongue is praise, the worship of the hands is giving, the worship of the body is effort, the worship of the heart is fear and hope, and the worship of the spirit is surrender and satisfaction in Allah.&rdquo;</li>
+  </ul>
+</details>
+
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var KEY = "khutba06:";
+  function get(k) { try { return localStorage.getItem(KEY + k); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(KEY + k, v); } catch (e) {} }
+
+  /* theme */
+  var themeBtn = document.getElementById("themeBtn");
+  function isDark() {
+    var t = root.getAttribute("data-theme");
+    if (t) return t === "dark";
+    return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function paintThemeLabel() { themeBtn.textContent = isDark() ? "Light" : "Dark"; }
+  var savedTheme = get("theme");
+  if (savedTheme === "dark" || savedTheme === "light") root.setAttribute("data-theme", savedTheme);
+  paintThemeLabel();
+  themeBtn.addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    set("theme", next);
+    paintThemeLabel();
+  });
+
+  /* text size */
+  var scale = parseFloat(get("scale"));
+  if (!(scale >= 0.8 && scale <= 1.6)) scale = 1;
+  function applyScale() { root.style.setProperty("--scale", scale.toFixed(2)); }
+  applyScale();
+  document.getElementById("smaller").addEventListener("click", function () {
+    scale = Math.max(0.8, Math.round((scale - 0.1) * 10) / 10); applyScale(); set("scale", scale);
+  });
+  document.getElementById("larger").addEventListener("click", function () {
+    scale = Math.min(1.6, Math.round((scale + 0.1) * 10) / 10); applyScale(); set("scale", scale);
+  });
+
+  /* jump menu */
+  var sec = document.getElementById("sec");
+  sec.addEventListener("click", function (e) { if (e.target.closest(".jump a")) sec.open = false; });
+  document.addEventListener("click", function (e) { if (sec.open && !sec.contains(e.target)) sec.open = false; });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") sec.open = false; });
+
+  /* current-section tracking, offset by the sticky bar */
+  var current = document.getElementById("current");
+  var markers = Array.prototype.slice.call(document.querySelectorAll("[data-label]"));
+  function updateCurrent() {
+    var barH = document.querySelector(".bar").getBoundingClientRect().height;
+    var line = barH + 24;
+    var label = markers[0].getAttribute("data-label");
+    for (var i = 0; i < markers.length; i++) {
+      if (markers[i].getBoundingClientRect().top <= line) label = markers[i].getAttribute("data-label");
+      else break;
+    }
+    var tmp = document.createElement("span"); tmp.innerHTML = label;
+    if (current.textContent !== tmp.textContent) current.textContent = tmp.textContent;
+  }
+
+  /* scroll persistence: survives Safari discarding the tab */
+  var saveTimer = null;
+  window.addEventListener("scroll", function () {
+    updateCurrent();
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () { set("y", String(Math.round(window.scrollY))); }, 250);
+  }, { passive: true });
+  window.addEventListener("pagehide", function () { set("y", String(Math.round(window.scrollY))); });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") set("y", String(Math.round(window.scrollY)));
+  });
+
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  var y = parseInt(get("y"), 10);
+  function restore() {
+    if (!location.hash && y > 0) {
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(0, y);
+      root.style.scrollBehavior = "";
+    }
+    updateCurrent();
+  }
+  /* offline: cache this khutba on the device (https only) */
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(function () {});
+  }
+
+  /* keep the screen awake where iOS allows it */
+  var lock = null;
+  function wake() {
+    if (!("wakeLock" in navigator) || lock || document.visibilityState !== "visible") return;
+    navigator.wakeLock.request("screen").then(function (l) {
+      lock = l; root.classList.add("awake");
+      l.addEventListener("release", function () { lock = null; root.classList.remove("awake"); });
+    }).catch(function () {});
+  }
+  wake();
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") wake(); });
+  document.addEventListener("click", wake);
+  document.addEventListener("touchend", wake, { passive: true });
+
+  if (document.readyState === "complete") restore();
+  else window.addEventListener("load", restore);
+})();
+</script>
+</body>
+</html>

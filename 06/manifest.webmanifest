@@ -1,0 +1,13 @@
+{
+  "name": "06 Khutba - Balance in Islam",
+  "short_name": "Khutba 06",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#11161C",
+  "theme_color": "#11161C",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
