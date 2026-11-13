@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>52 Khutba - Aim high, leave the result to Allah</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Khutba 52">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#11161C">
+<script>document.documentElement.classList.add("js");</script>
+<style>
+:root {
+  --ground: #F4F6F8;
+  --surface: #FFFFFF;
+  --ink: #151C24;
+  --ink-soft: #4A5561;
+  --accent: #B07A1E;
+  --cue: #5A7D8C;
+  --rule: #DDE3E9;
+  --bar: rgba(244, 246, 248, 0.94);
+  --scale: 1;
+  --f-serif: ui-serif, "New York", Georgia, "Times New Roman", serif;
+  --f-sans: -apple-system, system-ui, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --f-arabic: system-ui, "Geeza Pro", "Al Bayan", "Baghdad", "Traditional Arabic", serif;
+  --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --bar-h: 3.25rem;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #11161C;
+    --surface: #182028;
+    --ink: #E8EDF2;
+    --ink-soft: #9FAEBC;
+    --accent: #E0A94A;
+    --cue: #7FA8BA;
+    --rule: #26313B;
+    --bar: rgba(17, 22, 28, 0.94);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --ground: #11161C;
+  --surface: #182028;
+  --ink: #E8EDF2;
+  --ink-soft: #9FAEBC;
+  --accent: #E0A94A;
+  --cue: #7FA8BA;
+  --rule: #26313B;
+  --bar: rgba(17, 22, 28, 0.94);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html {
+  font-size: calc(125% * var(--scale));
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--bar-h) + env(safe-area-inset-top, 0px) + 1rem);
+}
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  line-height: 1.55;
+}
+
+/* ---------- sticky bar ---------- */
+.bar {
+  position: sticky; top: 0; z-index: 10;
+  height: calc(var(--bar-h) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  display: flex; align-items: center; gap: 0.75rem;
+  padding-inline: max(1rem, env(safe-area-inset-left));
+  background: var(--bar);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.72rem;
+}
+.bar .where {
+  flex: 1; min-width: 0;
+  display: flex; flex-direction: column; line-height: 1.2;
+}
+.bar .where .ttl {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--f-serif); font-size: 0.85rem;
+}
+.bar .where .ttl b {
+  font-family: var(--f-mono); font-weight: 600; font-size: 0.66rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent);
+}
+.bar .where .now {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font: 600 0.6rem/1.35 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--cue);
+}
+.ctl { display: flex; gap: 0.35rem; }
+.ctl button {
+  font: 600 0.7rem/1 var(--f-mono);
+  letter-spacing: 0.04em;
+  min-width: 2.4rem; height: 2.2rem; padding-inline: 0.6rem;
+  border: 1px solid var(--rule); border-radius: 0.5rem;
+  background: var(--surface); color: var(--ink); cursor: pointer;
+}
+.ctl button:focus-visible, a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+
+/* ---------- jump menu ---------- */
+.sec > summary {
+  list-style: none; cursor: pointer;
+  display: inline-flex; align-items: center;
+  font: 600 0.7rem/1 var(--f-mono); letter-spacing: 0.04em;
+  height: 2.2rem; padding-inline: 0.7rem;
+  border: 1px solid var(--accent); border-radius: 0.5rem;
+  background: var(--surface); color: var(--accent);
+}
+.sec > summary::-webkit-details-marker { display: none; }
+.sec > summary .c, .sec[open] > summary .o { display: none; }
+.sec[open] > summary .c { display: inline; }
+.sec[open] > summary { background: var(--accent); color: var(--ground); }
+.jump {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 9;
+  max-height: calc(100vh - var(--bar-h)); overflow-y: auto;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+  padding-block: 0.75rem 1rem;
+  padding-inline: 1rem;
+}
+.awake .bar .now::before { content: "\25CF\00a0"; color: var(--accent); }
+.ctl .needs-js { display: none; }
+.js .ctl .needs-js { display: inline-block; }
+.jump ol { list-style: none; margin: 0 auto; padding: 0; max-width: 34rem; display: grid; gap: 0.25rem; }
+.jump a {
+  display: flex; gap: 0.75rem; align-items: baseline;
+  padding: 0.55rem 0.6rem; border-radius: 0.4rem;
+  color: var(--ink); text-decoration: none; font-size: 0.85rem;
+}
+.jump a:hover { background: var(--ground); }
+.jump a .n { font-family: var(--f-serif); color: var(--accent); width: 1.2rem; flex: none; }
+.jump li.grp a {
+  display: flex; justify-content: space-between; align-items: center;
+  font: 600 0.64rem/1 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cue); padding: 0.75rem 0.6rem 0.4rem; margin-top: 0.3rem;
+  border-bottom: 1px solid var(--rule); border-radius: 0;
+}
+.jump li.grp a::after { content: "Opening \2193"; font-size: 0.55rem; opacity: 0.8; }
+.jump a.jalsa-link {
+  background: var(--ground); border: 1px dashed var(--cue);
+  font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--cue); margin-block: 0.3rem;
+}
+
+/* ---------- page ---------- */
+main {
+  max-width: 34rem; margin-inline: auto;
+  padding-inline: max(1.25rem, env(safe-area-inset-left));
+  padding-block: 1.5rem 4rem;
+}
+.masthead { padding-block: 0.5rem 1.5rem; border-bottom: 1px solid var(--rule); margin-bottom: 1.5rem; }
+.masthead .kicker {
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--cue);
+}
+.masthead h1 {
+  font-family: var(--f-serif); font-weight: 600;
+  font-size: 1.7rem; line-height: 1.2; margin: 0.5rem 0 0;
+  text-wrap: balance;
+}
+
+.masthead .updated {
+  margin-top: 0.6rem;
+  font: 600 0.6rem/1.3 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
+}
+
+/* legal maxim: a principle of the jurists, not revelation - no gold rail */
+.maxim {
+  margin-block: 1rem 1.5rem; padding: 1.1rem 1rem 1rem;
+  border-block: 1px solid var(--rule);
+  text-align: center;
+}
+.maxim .ar { text-align: center; font-size: 1.75rem; margin-bottom: 0.35rem; }
+.maxim-en {
+  font-family: var(--f-serif); font-weight: 600; font-size: 1.12rem; line-height: 1.4;
+  margin: 0; text-wrap: balance;
+}
+.maxim .cite { margin-top: 0.75rem; }
+.maxim .cite em { font-style: normal; text-transform: none; letter-spacing: 0.02em; }
+
+/* ritual label rule: unnumbered, structural */
+.ritual {
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-block: 2.5rem 1.25rem;
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.ritual::before, .ritual::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+/* content sections: numbered argument */
+section.arg { margin-block: 2.25rem 0; }
+.arg h2 {
+  display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.5rem; align-items: baseline;
+  font-family: var(--f-serif); font-weight: 600;
+  font-size: 1.3rem; line-height: 1.25; margin: 0 0 1rem;
+  text-wrap: balance;
+}
+.arg h2.plain { grid-template-columns: 1fr; }
+.arg h2 .n { color: var(--accent); font-size: 1.45rem; }
+
+p { margin: 0 0 0.85rem; }
+ul, ol.steps { margin: 0 0 1rem; padding-left: 1.15rem; }
+li { margin-bottom: 0.4rem; }
+li > ul { margin-top: 0.4rem; margin-bottom: 0.2rem; }
+li::marker { color: var(--ink-soft); }
+strong { font-weight: 650; }
+.lead { font-weight: 600; }
+
+/* ---------- Arabic shapes ---------- */
+.passage {
+  background: var(--surface);
+  border-right: 3px solid var(--accent);
+  border-radius: 0.6rem 0 0 0.6rem;
+  padding: 1rem 1.15rem;
+  margin-block: 0.75rem 1.25rem;
+}
+.ar {
+  font-family: var(--f-arabic);
+  font-size: 1.55rem; line-height: 1.95;
+  direction: rtl; text-align: right;
+  margin: 0 0 0.6rem;
+}
+.en { color: var(--ink-soft); font-size: 0.9rem; margin: 0; }
+.en + .ar { margin-top: 1rem; }
+.cite {
+  display: block; margin-top: 0.6rem;
+  font: 600 0.62rem/1.3 var(--f-mono); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cue);
+}
+a.cite {
+  width: fit-content;
+  text-decoration: underline dotted var(--cue); text-underline-offset: 3px;
+}
+a.cite::after { content: " \2197"; }
+a.cite:hover { color: var(--accent); }
+.cite + .ar { margin-top: 1rem; }
+.ar-inline {
+  font-family: var(--f-arabic); font-size: 1.2em;
+  direction: rtl; unicode-bidi: isolate;
+}
+.quote-en { font-weight: 650; color: var(--ink); font-size: 1rem; margin: 0; }
+
+/* ---------- cues: never spoken ---------- */
+.pause {
+  display: flex; justify-content: center; margin-block: 1.1rem;
+}
+.pause span {
+  font: 600 0.62rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--cue); border: 1.5px dotted var(--cue); border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+}
+.pause span::before { content: "\25CB\00a0\00a0"; }
+
+.transition {
+  display: flex; align-items: center; gap: 0.6rem; margin-block: 1.25rem;
+  font: 600 0.6rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--cue);
+}
+.transition::before, .transition::after {
+  content: ""; flex: 1; border-top: 1.5px dotted var(--cue);
+}
+
+.emph {
+  position: relative;
+  border-left: 3px dotted var(--cue);
+  padding-left: 0.9rem; margin-block: 0.75rem 1rem;
+}
+.emph::before {
+  content: "Emphasize";
+  display: block; margin-bottom: 0.45rem;
+  font: 600 0.58rem/1 var(--f-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--cue);
+}
+.emph ul { margin-bottom: 0; }
+
+.jalsa {
+  margin-block: 3rem;
+  border: 2px dashed var(--cue); border-radius: 0.8rem;
+  padding: 1.5rem 1rem; text-align: center;
+  background: var(--surface);
+}
+.jalsa .big {
+  font: 700 1rem/1.2 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--cue);
+}
+.jalsa .small {
+  font: 600 0.6rem/1.4 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-soft); margin-top: 0.5rem;
+}
+
+/* ---------- duas ---------- */
+.duas { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 0.85rem; }
+.duas li { margin: 0; padding-left: 0.9rem; border-left: 2px solid var(--rule); }
+.duas .name { color: var(--accent); font-weight: 650; }
+
+.disclaimer { font-style: italic; color: var(--ink-soft); font-size: 0.9rem; margin-top: 2rem; }
+
+details.parking {
+  margin-top: 3rem; border: 1px solid var(--rule); border-radius: 0.6rem;
+  padding: 0.75rem 1rem; background: var(--surface); font-size: 0.85rem;
+}
+details.parking summary {
+  cursor: pointer; font: 600 0.62rem/1.4 var(--f-mono); letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--cue);
+}
+details.parking ul { margin-top: 0.75rem; }
+
+.end {
+  text-align: center; margin-top: 2.5rem;
+  font: 600 0.6rem/1 var(--f-mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft);
+}
+
+@media (max-width: 30rem) {
+  html { font-size: calc(106.25% * var(--scale)); }
+  .bar .where .ttl { font-size: 0.8rem; }
+  .ar { font-size: 1.4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+/* ---------- print fallback ---------- */
+@media print {
+  :root, :root[data-theme="dark"] {
+    --ground: #fff; --surface: #fff; --ink: #000; --ink-soft: #333;
+    --accent: #000; --cue: #555; --rule: #bbb;
+  }
+  html { font-size: 12pt; }
+  .bar, .jump, details.parking { display: none !important; }
+  main { max-width: none; padding: 0; }
+  .passage { border: 1px solid #999; border-right-width: 3px; break-inside: avoid; }
+  section.arg { break-before: auto; }
+  .arg h2, .ritual { break-after: avoid; }
+  .jalsa { break-before: page; break-inside: avoid; }
+  .duas li, .emph { break-inside: avoid; }
+}
+
+/* khutba 06: word-study glosses */
+.term { font-weight: 650; }
+.term .ar-inline { font-weight: 400; }
+.term em { font-family: var(--f-mono); font-style: normal; font-size: 0.72em; letter-spacing: 0.04em; color: var(--cue); }
+.src { margin: -0.4rem 0 1.25rem; }
+.notes { margin-top: -0.25rem; }
+
+/* khutba 52 additions */
+.slot { font: 600 0.62rem/1.4 var(--f-mono); letter-spacing: 0.06em; color: var(--accent); }
+.srcin { display: inline-block; font: 600 0.58rem/1.3 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--cue); }
+a.cite.inline { display: inline; margin: 0; }
+table.ledger { width: 100%; border-collapse: collapse; margin: 0.5rem 0 1rem; font-size: 0.85rem; background: var(--surface); }
+table.ledger th, table.ledger td { border: 1px solid var(--rule); padding: 0.5rem 0.6rem; text-align: left; vertical-align: top; }
+table.ledger thead th { font: 600 0.6rem/1.3 var(--f-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--cue); }
+table.ledger td { font-weight: 650; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="where">
+    <span class="ttl"><b>52 Khutba</b> - Aim high, leave the result to Allah</span>
+    <span class="now" id="current">First khutba &middot; Opening</span>
+  </div>
+  <div class="ctl">
+    <details class="sec" id="sec">
+      <summary><span class="o">Sections</span><span class="c">Close</span></summary>
+      <nav class="jump" aria-label="Sections">
+    <ol>
+        <li class="grp"><a href="#k1">First khutba</a></li>
+        <li><a href="#s0"><span class="n">&#9675;</span>Two words</a></li>
+        <li><a href="#s1"><span class="n">1</span>Why should we aim high?</a></li>
+        <li><a href="#s2"><span class="n">2</span>Why is it so hard?</a></li>
+        <li><a href="#s3"><span class="n">3</span>Why do we hold back?</a></li>
+        <li><a href="#s4"><span class="n">4</span>What do we lose by aiming low?</a></li>
+        <li><a href="#jalsa" class="jalsa-link">&#9675;&nbsp; Jalsa - sit 45s, resume here</a></li>
+        <li class="grp"><a href="#k2">Second khutba</a></li>
+        <li><a href="#s5"><span class="n">5</span>How do I handle failure, and success?</a></li>
+        <li><a href="#s6"><span class="n">6</span>So is it better to aim high and miss?</a></li>
+        <li><a href="#s7"><span class="n">7</span>So what do we do this week?</a></li>
+        <li><a href="#duas"><span class="n">&#10022;</span>Concluding duas</a></li>
+      </ol>
+      </nav>
+    </details>
+    <button type="button" class="needs-js" id="smaller" aria-label="Smaller text">A&minus;</button>
+    <button type="button" class="needs-js" id="larger" aria-label="Larger text">A+</button>
+    <button type="button" class="needs-js" id="themeBtn" aria-label="Toggle light or dark">Dark</button>
+  </div>
+</header>
+
+
+<main>
+
+<div class="masthead">
+  <div class="kicker">52 Khutba &middot; Draft 1</div>
+  <h1>Aim high, leave the result to Allah</h1>
+  <div class="updated">Last updated: 2026-11-13 11:31 EST</div>
+</div>
+
+<!-- ======================= FIRST KHUTBA ======================= -->
+<div class="ritual" id="k1" data-label="First khutba &middot; Opening">First khutba &middot; Opening</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">إِنَّ الْحَمْدَ لِلَّهِ نَحْمَدُهُ وَنَسْتَعِينُهُ وَنَسْتَغْفِرُهُ وَنَعُوذُ بِاللَّهِ مِنْ شُرُورِ أَنْفُسِنَا وَمِنْ سَيِّئَاتِ أَعْمَالِنَا مَن يَهْدِهِ اللَّهُ فَلَا مُضِلَّ لَهُ وَمَن يُضْلِلْ فَلَا هَادِيَ لَهُ وَأَشْهَدُ أَن لَّا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ صَلَّىٰ اللَّهُ عَلَيْهِ وَسَلَّمَ</p>
+  <p class="en">All praise is due to Allah. We praise Him, we seek His help, we seek His forgiveness, and we seek refuge in Allah from the evil within ourselves and our evil deeds. Whoever Allah guides, there is none to misguide him. Whoever Allah leads astray, there is none to guide him. I testify there is no god but Allah alone, without any partners, and that Muhammad, peace and blessings be upon him, is His servant and His messenger.</p>
+  <a class="cite" href="https://sunnah.com/nasai:1404" target="_blank" rel="noopener">Khutbat al-Hajah &middot; Sunan an-Nasa&rsquo;i 1404</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">يَٰأَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَقُولُوا قَوْلًا سَدِيدًا يُصْلِحْ لَكُمْ أَعْمَالَكُمْ وَيَغْفِرْ لَكُمْ ذُنُوبَكُمْ وَمَن يُطِعِ اللَّهَ وَرَسُولَهُ فَقَدْ فَازَ فَوْزًا عَظِيمًا</p>
+  <p class="en">O you who have believed! Fear Allah and speak words of appropriate justice. He will correct for you your deeds and forgive you your sins. And whoever obeys Allah and His Messenger has certainly attained a great success.</p>
+  <a class="cite" href="https://quran.com/33/70-71" target="_blank" rel="noopener">Al-Ahzab 33:70-71</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">أمَّا بعدُ، فإنَّ أصدقَ الحديثِ كتابُ اللهِ، وخيرَ الهديِ هديُ محمَّدٍ صلَّى اللهُ عليه وسلَّم، وشرَّ الأمورِ مُحدَثاتُها، وكلَّ مُحدَثةٍ بدعةٌ، وكلَّ بدعةٍ ضلالةٌ، وكلَّ ضلالةٍ في النَّارِ</p>
+  <p class="en">To proceed: As for what follows: the truest speech is the Book of Allah, and the best guidance is the guidance of Muhammad, may Allah bless him and grant him peace. The worst of matters are those newly introduced (into the religion); every newly introduced matter is an innovation, every innovation is misguidance, and every misguidance is in the Fire.</p>
+  <a class="cite" href="https://sunnah.com/nasai:1578" target="_blank" rel="noopener">Sunan an-Nasa&rsquo;i 1578</a>
+</div>
+
+<!-- ---------- opening ---------- -->
+<section class="arg" id="s0" data-label="Opening &middot; Two words">
+  <h2 class="plain"><span>Two words</span></h2>
+  <ul>
+    <li>Earlier this month, a man stood on a stage in Detroit.
+      <ul>
+        <li>The first Muslim ever elected to the United States Senate.</li>
+        <li>He told the crowd: all campaign, whenever the outcome came up, he'd said <strong>insha'Allah</strong>.</li>
+        <li>And that night, the insha'Allah could become <strong>alhamdulillah</strong>.</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="pause"><span>Pause &middot; 3s</span></div>
+  <ul class="notes">
+    <li>A few weeks before that, my daughter told me something. <span class="slot">[Omar: optional, one real detail of where or when]</span>
+      <ul>
+        <li>She's scared to set big goals.</li>
+        <li>What if she doesn't reach them?</li>
+        <li>She'd be sad... and she'd feel she let herself down, and let us down.</li>
+      </ul>
+    </li>
+    <li>I've been thinking about her question ever since. Because it isn't only hers.
+      <ul>
+        <li>The promotion you don't apply for.</li>
+        <li>The business you don't start.</li>
+        <li>The surah you never try to memorize.</li>
+      </ul>
+    </li>
+    <li><strong>So one question today: is it safer to aim lower?</strong></li>
+    <li>Let's start with what Allah wants from us.</li>
+  </ul>
+</section>
+
+<!-- ---------- 1 ---------- -->
+<section class="arg" id="s1" data-label="1 &middot; Why should we aim high?">
+  <h2><span class="n">1</span><span>Why should we aim high?</span></h2>
+  <ul>
+    <li><strong>Ask for the top.</strong> The Prophet &#xFDFA; described a hundred levels in Jannah, then said:</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">فإذا سَأَلْتُمُ اللَّهَ، فاسْأَلُوهُ الفِرْدَوْسَ؛ فإنَّه أوْسَطُ الجَنَّةِ وأَعْلَى الجَنَّةِ</p>
+    <p class="quote-en">&ldquo;When you ask Allah, ask Him for al-Firdaws. It's the middle of Jannah and the highest part of Jannah.&rdquo;</p>
+    <a class="cite" href="https://sunnah.com/bukhari:2790" target="_blank" rel="noopener">Sahih al-Bukhari 2790</a>
+  </div>
+  <ul class="notes">
+    <li>He didn't say, ask to just make it in. He said: ask for the top.</li>
+    <li><strong>Allah loves it.</strong></li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">إنَّ اللهَ تعالى يُحِبُّ مَعاليَ الأُمورِ ، و أَشرافَها ، و يَكرَهُ سَفْسافَها</p>
+    <p class="quote-en">&ldquo;Allah loves lofty matters and noble ones, and He dislikes the petty ones.&rdquo;</p>
+    <span class="cite">al-Tabarani &middot; sahih per al-Albani, Sahih al-Jami&rsquo; 1890</span>
+  </div>
+  <ul class="notes">
+    <li><strong>Umar ibn Abd al-Aziz</strong> told his friend Raja' ibn Haywah: I have a yearning soul.
+      <ul>
+        <li>It yearned to marry Fatimah bint Abd al-Malik, and he married her.</li>
+        <li>It yearned to govern, and he was made governor.</li>
+        <li>It yearned for the caliphate... and he became caliph.</li>
+        <li>&ldquo;And now my soul yearns for Jannah. And I hope to reach it, insha'Allah.&rdquo;</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="emph">
+    <ul>
+      <li>Every time he reached a goal, he set a higher one.</li>
+      <li>And for the highest goal of all... he said insha'Allah.</li>
+    </ul>
+  </div>
+  <ul class="notes">
+    <li><strong>One guardrail: intention.</strong>
+      <ul>
+        <li>Actions are judged by intentions. <a class="cite inline" href="https://sunnah.com/bukhari:1" target="_blank" rel="noopener">Sahih al-Bukhari 1</a></li>
+        <li>Aim high for Him, not for the applause.</li>
+      </ul>
+    </li>
+    <li>So if Allah loves lofty goals... why is it so hard to set them?</li>
+  </ul>
+</section>
+
+<!-- ---------- 2 ---------- -->
+<section class="arg" id="s2" data-label="2 &middot; Why is it so hard?">
+  <h2><span class="n">2</span><span>Why is it so hard?</span></h2>
+  <ul>
+    <li>Because it's supposed to be. That's part of why my daughter's big goal feels so heavy.</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">لَقَدْ خَلَقْنَا ٱلْإِنسَـٰنَ فِى كَبَدٍ</p>
+    <p class="quote-en">&ldquo;We have certainly created the human being in toil.&rdquo;</p>
+    <a class="cite" href="https://quran.com/90/4" target="_blank" rel="noopener">Al-Balad 90:4</a>
+  </div>
+  <div class="passage">
+    <p class="ar" lang="ar">حُفَّتِ الْجَنَّةُ بِالْمَكَارِهِ وَحُفَّتِ النَّارُ بِالشَّهَوَاتِ</p>
+    <p class="quote-en">&ldquo;Jannah is surrounded by hardships, and the Fire is surrounded by desires.&rdquo;</p>
+    <a class="cite" href="https://sunnah.com/muslim:2822" target="_blank" rel="noopener">Sahih Muslim 2822</a>
+  </div>
+  <ul class="notes">
+    <li>Imam al-Nawawi: it's like a curtain. You only reach what's behind it by pushing through it.</li>
+    <li>Ibn al-Qayyim: the wise of every nation agree, comfort is never reached through comfort.
+      <ul>
+        <li>Whoever chooses rest... loses rest. <span class="srcin">Miftah Dar al-Sa&rsquo;adah</span></li>
+      </ul>
+    </li>
+    <li>So when the big goal feels hard... often, that's the sign you're on the right road.</li>
+    <li>Hard, we can handle. What really stops most of us is something else.</li>
+  </ul>
+</section>
+
+<!-- ---------- 3 ---------- -->
+<section class="arg" id="s3" data-label="3 &middot; Why do we hold back?">
+  <h2><span class="n">3</span><span>Why do we hold back?</span></h2>
+  <ul>
+    <li><strong>Fear.</strong> My daughter's fear: what if I fail?</li>
+    <li>The Prophet &#xFDFA; knew this feeling. He used to say:</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْجُبْنِ وَالْبُخْلِ، وَضَلَعِ الدَّيْنِ، وَغَلَبَةِ الرِّجَالِ</p>
+    <p class="quote-en">&ldquo;O Allah, I seek refuge in You from worry and grief, from incapacity and laziness, from cowardice and miserliness, from the burden of debt and from being overpowered by people.&rdquo;</p>
+    <a class="cite" href="https://sunnah.com/bukhari:6369" target="_blank" rel="noopener">Sahih al-Bukhari 6369</a>
+  </div>
+  <ul class="notes">
+    <li>Three of those words:
+      <ul>
+        <li><strong><span class="ar-inline" lang="ar">الْعَجْزِ</span> al-'ajz:</strong> &ldquo;I can't.&rdquo;</li>
+        <li><strong><span class="ar-inline" lang="ar">الْكَسَلِ</span> al-kasal:</strong> &ldquo;I could... just not today.&rdquo;</li>
+        <li><strong><span class="ar-inline" lang="ar">الْجُبْنِ</span> al-jubn:</strong> &ldquo;I could... but what if I fail?&rdquo;</li>
+      </ul>
+    </li>
+    <li>That third one is her question. It's a lot of us. <span class="slot">[Omar: optional, a goal you once held back from]</span></li>
+    <li>And the bravest of people &#xFDFA; still asked Allah for protection from it.</li>
+  </ul>
+  <div class="emph">
+    <ul>
+      <li>So feeling the fear isn't the failure.</li>
+      <li>Letting it choose your goals is.</li>
+    </ul>
+  </div>
+  <ul class="notes">
+    <li>And what happens if we do let it choose?</li>
+  </ul>
+</section>
+
+<!-- ---------- 4 ---------- -->
+<section class="arg" id="s4" data-label="4 &middot; What do we lose by aiming low?">
+  <h2><span class="n">4</span><span>What do we lose by aiming low?</span></h2>
+  <ul>
+    <li><strong>Small goals don't stay small.</strong> They take over. The Prophet &#xFDFA; said:</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">تَعِسَ عبدُ الدِّينَارِ، وَعَبْدُ الدِّرْهَمِ، وَعَبْدُ الخَمِيصَةِ، إنْ أُعْطِيَ رَضِيَ، وإنْ لَمْ يُعْطَ سَخِطَ</p>
+    <p class="quote-en">&ldquo;Wretched is the slave of the dinar, the dirham, and the fine cloak. If he's given, he's pleased. If he isn't, he's angry.&rdquo;</p>
+    <a class="cite" href="https://sunnah.com/bukhari:2887" target="_blank" rel="noopener">Sahih al-Bukhari 2887</a>
+  </div>
+  <ul class="notes">
+    <li>Notice: his whole mood rides on the result.</li>
+    <li>Imam al-Shafi'i: your soul... if you don't keep it busy with truth, it'll keep you busy with falsehood. <span class="srcin">via Ibn al-Qayyim, al-Jawab al-Kafi</span></li>
+    <li>So aiming low isn't safe. It just picks a smaller master.</li>
+  </ul>
+  <div class="transition">Transition</div>
+  <ul class="notes">
+    <li>So yes... aim high.</li>
+    <li>But I know what she'd ask next. And it's fair.</li>
+    <li><strong>What if I aim high... and I miss?</strong></li>
+  </ul>
+</section>
+
+<div class="ritual" data-label="First khutba &middot; Conclusion">First khutba &middot; Conclusion</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">أَقُولُ قَوْلِي هَٰذَا وَأَسْتَغْفِرُ اللَّهَ لِي وَلَكُمْ وَلِسَائِرِ الْمُسْلِمِينَ فَاسْتَغْفِرُوهُ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ</p>
+  <p class="en">I say this saying of mine, and I seek forgiveness from Allah for myself and for you, and for the rest of the Muslims. So ask Him for forgiveness. Indeed, He is the Forgiving, the Merciful.</p>
+</div>
+
+<!-- ======================= JALSA ======================= -->
+<div class="jalsa" id="jalsa" data-label="Jalsa">
+  <div class="big">&#9675;&nbsp; Jalsa &middot; 45s</div>
+  <div class="small">Sit. Second khutba begins below.</div>
+</div>
+
+<!-- ======================= SECOND KHUTBA ======================= -->
+<div class="ritual" id="k2" data-label="Second khutba &middot; Opening">Second khutba &middot; Opening</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">بِسْمِ اللَّهِ وَالْحَمْدُ لِلَّهِ وَالصَّلَاةُ وَالسَّلَامُ عَلَىٰ رَسُولِ اللَّهِ صَلَّىٰ اللَّهُ عَلَيْهِ وَسَلَّمَ</p>
+  <p class="en">In the name of Allah, and all praise is due to Allah, and may Allah's blessings and peace be upon the Messenger of Allah, peace and blessings be upon him.</p>
+</div>
+
+<!-- ---------- 5 ---------- -->
+<section class="arg" id="s5" data-label="5 &middot; How do I handle failure, and success?">
+  <h2><span class="n">5</span><span>How do I handle failure, and success?</span></h2>
+  <ul>
+    <li>Before we sat, I left you with her question: what if I aim high and miss?</li>
+    <li>Allah answers both outcomes in one passage:</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">مَآ أَصَابَ مِن مُّصِيبَةٍ فِى ٱلْأَرْضِ وَلَا فِىٓ أَنفُسِكُمْ إِلَّا فِى كِتَـٰبٍ مِّن قَبْلِ أَن نَّبْرَأَهَآ ۚ إِنَّ ذَٰلِكَ عَلَى ٱللَّهِ يَسِيرٌ ۝ لِّكَيْلَا تَأْسَوْا۟ عَلَىٰ مَا فَاتَكُمْ وَلَا تَفْرَحُوا۟ بِمَآ ءَاتَىٰكُمْ ۗ وَٱللَّهُ لَا يُحِبُّ كُلَّ مُخْتَالٍ فَخُورٍ</p>
+    <p class="quote-en">&ldquo;No misfortune strikes the earth or yourselves except that it's in a record before We bring it into being. That is easy for Allah. So that you don't despair over what escaped you, and don't gloat over what He gave you. And Allah doesn't love the arrogant and boastful.&rdquo;</p>
+    <a class="cite" href="https://quran.com/57/22-23" target="_blank" rel="noopener">Al-Hadid 57:22-23</a>
+  </div>
+  <ul class="notes">
+    <li><strong>When you miss:</strong> the Prophet &#xFDFA; gave us the words.</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">احْرِصْ عَلَى مَا يَنْفَعُكَ، وَاسْتَعِنْ بِاللَّهِ، وَلاَ تَعْجِزْ. وَإِنْ أَصَابَكَ شَىْءٌ فَلاَ تَقُلْ: لَوْ أَنِّي فَعَلْتُ كَانَ كَذَا وَكَذَا، وَلَكِنْ قُلْ: قَدَرُ اللَّهِ وَمَا شَاءَ فَعَلَ؛ فَإِنَّ لَوْ تَفْتَحُ عَمَلَ الشَّيْطَانِ</p>
+    <p class="quote-en">&ldquo;Strive for what benefits you, seek Allah's help, and don't give up. And if something befalls you, don't say, &lsquo;If only I had done this, it would have turned out that way.&rsquo; Say instead: Allah decreed it, and He does what He wills. Because &lsquo;if only&rsquo; opens the door to Shaytan.&rdquo;</p>
+    <a class="cite" href="https://sunnah.com/muslim:2664" target="_blank" rel="noopener">Sahih Muslim 2664</a>
+  </div>
+  <ul class="notes">
+    <li>Did you hear it? &ldquo;Don't give up&rdquo; is <em>la ta'jiz</em>... the same 'ajz from the Prophet's dua.</li>
+    <li>The man from election night lost his first race, in 2018, by more than 20 points.
+      <ul>
+        <li>That night, the result didn't come.</li>
+        <li>But the effort that night wasn't wasted.</li>
+      </ul>
+    </li>
+    <li><strong>When you win:</strong> it's a test too. Sulayman, when he saw the throne set before him:</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">هَـٰذَا مِن فَضْلِ رَبِّى لِيَبْلُوَنِىٓ ءَأَشْكُرُ أَمْ أَكْفُرُ</p>
+    <p class="quote-en">&ldquo;This is from the favor of my Lord, to test me: will I be grateful, or ungrateful?&rdquo;</p>
+    <a class="cite" href="https://quran.com/27/40" target="_blank" rel="noopener">An-Naml 27:40 &middot; excerpt</a>
+  </div>
+  <ul class="notes">
+    <li>Alhamdulillah is how you pass that test.</li>
+    <li>Which brings me back to my daughter.</li>
+  </ul>
+</section>
+
+<!-- ---------- 6 ---------- -->
+<section class="arg" id="s6" data-label="6 &middot; So is it better to aim high and miss?">
+  <h2><span class="n">6</span><span>So is it better to aim high and miss?</span></h2>
+  <ul>
+    <li><strong>Yes.</strong> A believer leaves home for hijrah... and dies on the road. He never arrives.</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">وَمَن يَخْرُجْ مِنۢ بَيْتِهِۦ مُهَاجِرًا إِلَى ٱللَّهِ وَرَسُولِهِۦ ثُمَّ يُدْرِكْهُ ٱلْمَوْتُ فَقَدْ وَقَعَ أَجْرُهُۥ عَلَى ٱللَّهِ</p>
+    <p class="quote-en">&ldquo;Whoever leaves his home emigrating to Allah and His Messenger, and death overtakes him, his reward is already secured with Allah.&rdquo;</p>
+    <a class="cite" href="https://quran.com/4/100" target="_blank" rel="noopener">An-Nisa 4:100 &middot; excerpt</a>
+  </div>
+  <ul class="notes">
+    <li>He never reached the goal. His reward is full.</li>
+    <li>And the Prophet &#xFDFA; told us exactly how the angels write it down:</li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">فَمَنْ هَمَّ بِحَسَنَةٍ فَلَمْ يَعْمَلْهَا كَتَبَهَا اللهُ لَهُ عِنْدَهُ حَسَنَةً كَامِلَةً، فَإِنْ هُوَ هَمَّ بِهَا فَعَمِلَهَا كَتَبَهَا اللهُ لَهُ عِنْدَهُ عَشْرَ حَسَنَاتٍ إِلَى سَبْعِمِائَةِ ضِعْفٍ، إِلَى أَضْعَافٍ كَثِيرَةٍ</p>
+    <p class="quote-en">&ldquo;Whoever intends a good deed and doesn't do it, Allah writes it with Himself as one full good deed. And if he intends it and does it, Allah writes it as ten good deeds, up to seven hundred times, and many times more.&rdquo;</p>
+    <a class="cite" href="https://sunnah.com/bukhari:6491" target="_blank" rel="noopener">Sahih al-Bukhari 6491 &middot; Sahih Muslim 131</a>
+  </div>
+  <table class="ledger" aria-label="How a good intention is recorded">
+    <thead><tr><th>A good intention</th><th>Achieved</th><th>Not achieved</th></tr></thead>
+    <tbody><tr><th>Written as</th><td>10 to 700 times, and more</td><td>1 full good deed</td></tr></tbody>
+  </table>
+  <div class="pause"><span>Pause &middot; 3s</span></div>
+  <ul class="notes">
+    <li>Think about what that means:
+      <ul>
+        <li>Aim high and reach it... ten to seven hundred times, and more.</li>
+        <li>Aim high and miss... a full good deed, already written.</li>
+        <li>Never aim at all... there's nothing to write.</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="passage">
+    <p class="ar" lang="ar">وَأَن لَّيْسَ لِلْإِنسَـٰنِ إِلَّا مَا سَعَىٰ ۝ وَأَنَّ سَعْيَهُۥ سَوْفَ يُرَىٰ</p>
+    <p class="quote-en">&ldquo;A person has only what they strive for, and their striving will be seen.&rdquo;</p>
+    <a class="cite" href="https://quran.com/53/39-40" target="_blank" rel="noopener">An-Najm 53:39-40</a>
+  </div>
+  <ul class="notes">
+    <li>Ali ibn Abi Talib: the worth of every person is what they do well. <span class="srcin">Ibn Abd al-Barr, Jami&rsquo; Bayan al-&lsquo;Ilm</span>
+      <ul>
+        <li>That's ihsan. Aim high, then do it well.</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="emph">
+    <ul>
+      <li>So here's what I'd tell my daughter now.</li>
+      <li>Allah rewards lofty goals.</li>
+      <li>Allah rewards effort, not outcome.</li>
+      <li>So it's a no-brainer to go for the bigger goal.</li>
+      <li><strong>The reward is guaranteed... even if the outcome isn't.</strong></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ---------- 7 ---------- -->
+<section class="arg" id="s7" data-label="7 &middot; So what do we do this week?">
+  <h2><span class="n">7</span><span>So what do we do this week?</span></h2>
+  <ol class="steps">
+    <li><strong>Name one big goal by Sunday.</strong>
+      <ul>
+        <li>Write down the first step.</li>
+        <li>Then say insha'Allah, and mean it.</li>
+      </ul>
+    </li>
+    <li><strong>Learn the Prophet's dua</strong> against incapacity, laziness and cowardice.
+      <ul>
+        <li>Say it before the hardest thing on your calendar.</li>
+      </ul>
+    </li>
+    <li><strong>Parents and managers:</strong> when your child or your team brings you a result...
+      <ul>
+        <li>Ask &ldquo;What did you try?&rdquo; before you ask &ldquo;What did you get?&rdquo;</li>
+      </ul>
+    </li>
+  </ol>
+  <ul>
+    <li>On election night, an insha'Allah became an alhamdulillah.</li>
+    <li>Some of ours will end that way... some will end in <em>qaddar Allah</em>.</li>
+    <li>Both are a believer's words.</li>
+    <li>So... is it safer to aim lower? <strong>No.</strong></li>
+    <li><strong>Aim for the highest. Do it well. And leave the result to Allah... insha'Allah.</strong></li>
+  </ul>
+</section>
+
+<div class="ritual" data-label="Second khutba &middot; Conclusion">Second khutba &middot; Conclusion</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">اللَّهُمَّ صَلِّ عَلَىٰ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+  <p class="ar" lang="ar">اللَّهُمَّ بَارِكْ عَلَىٰ مُحَمَّدٍ وَعَلَىٰ آلِ مُحَمَّدٍ كَمَا بَارَكْتَ عَلَىٰ إِبْرَاهِيمَ وَعَلَىٰ آلِ إِبْرَاهِيمَ إِنَّكَ حَمِيدٌ مَجِيدٌ</p>
+  <p class="en">O Allah, send blessings upon Muhammad as You sent blessings upon Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious. O Allah, grant blessings to Muhammad and upon the family of Muhammad as You granted blessings to Ibrahim and upon the family of Ibrahim. Indeed, You are Praiseworthy and Glorious.</p>
+  <a class="cite" href="https://sunnah.com/bukhari:3370" target="_blank" rel="noopener">Sahih al-Bukhari 3370</a>
+</div>
+
+<div class="passage">
+  <p class="ar" lang="ar">لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا ۚ لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ ۗ رَبَّنَا لَا تُؤَاخِذْنَا إِن نَّسِينَا أَوْ أَخْطَأْنَا ۚ رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِن قَبْلِنَا ۚ رَبَّنَا وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ ۖ وَاعْفُ عَنَّا وَاغْفِرْ لَنَا وَارْحَمْنَا ۚ أَنتَ مَوْلَىٰنَا فَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ</p>
+  <p class="en">Allah does not require of any soul more than what it can afford. For it are its good deeds and upon it are its bad deeds. Our Lord! Do not hold us accountable if we forget or make a mistake. Our Lord! Do not burden us with that which we have no ability to bear. Pardon us, and forgive us, and have mercy upon us. You are our Master, so help us against the disbelieving people.</p>
+  <a class="cite" href="https://quran.com/2/286" target="_blank" rel="noopener">Al-Baqarah 2:286</a>
+</div>
+
+<section id="duas" data-label="Concluding duas">
+  <div class="ritual">Concluding duas</div>
+  <ul class="duas">
+    <li>Ya Allah, <span class="name">Ya &lsquo;Aliyy</span>, raise our aims, and make us love what You love of lofty matters.</li>
+    <li>Ya Allah, <span class="name">Ya Qawiyy</span>, protect us from incapacity, from laziness, and from cowardice.</li>
+    <li>Ya Allah, <span class="name">Ya Shakur</span>, accept our effort and count our striving, even when we fall short.</li>
+    <li>Ya Allah, <span class="name">Ya Hakim</span>, when we miss, put qaddar Allah on our tongues, and when we succeed, put alhamdulillah there instead of pride.</li>
+    <li>Ya Allah, <span class="name">Ya Rahman</span>, give our children the courage to aim high and the certainty that You see their effort.</li>
+    <li>Ya Allah, <span class="name">Ya Karim</span>, grant us and our families al-Firdaws al-A&rsquo;la.</li>
+  </ul>
+</section>
+
+<div class="passage">
+  <p class="ar" lang="ar">عِبَادَ اللَّهِ إِنَّ اللَّهَ يَأْمُرُ بِالْعَدْلِ وَالْإِحْسَانِ وَإِيتَاءِ ذِي الْقُرْبَىٰ وَيَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ وَالْبَغْيِ يَعِظُكُمْ لَعَلَّكُمْ تَذَكَّرُونَ</p>
+  <a class="cite" href="https://quran.com/16/90" target="_blank" rel="noopener">An-Nahl 16:90</a>
+  <p class="ar" lang="ar">اذْكُرُوا اللَّهَ الْعَظِيمَ يَذْكُرْكُمْ وَاشْكُرُوهُ عَلَىٰ نِعَمِهِ يَزِدْكُمْ وَلَذِكْرُ اللَّهِ أَكْبَرُ وَاللَّهُ يَعْلَمُ مَا تَصْنَعُون</p>
+  <p class="ar" lang="ar">أَقِيمُوا الصَّلَاةَ</p>
+  <p class="en">Slaves of Allah! Indeed, Allah commands justice, the doing of good, and liberality to kith and kin, and He forbids all shameful deeds, and injustice and rebellion. He instructs you, so that you may remember. Remember Allah the Almighty, and He will remember you. And be thankful to Him, and He will increase you in bounty. And the remembrance of Allah is the greatest. And Allah knows all that you do. Establish the prayer.</p>
+</div>
+
+<p class="disclaimer">If there is anything that I have said that is good and you gain value from it, it is surely from Allah. If there is anything I have said that may be incorrect, it is due to my own shortcomings, for that I ask forgiveness from Allah the most merciful and from you.</p>
+
+<div class="end">End of khutba</div>
+
+<details class="parking">
+  <summary>Parking lot - not for delivery</summary>
+  <ul>
+    <li>Judge hadith (parked for time): strives and is right, two rewards; strives and errs, one reward. Sahih al-Bukhari 7352, Sahih Muslim 1716.</li>
+    <li>Table's bad-intention row left out: off the spine. Its "1 sin if pursued but blocked" cell is scholarly commentary, not in the wording of Bukhari 6491.</li>
+    <li>To confirm before final: primary source for Umar ibn Abd al-Aziz's "yearning soul" (narrated by Raja' ibn Haywah).</li>
+    <li>Possible trims to reach ~17 min: Sulayman line (5), al-Nawawi curtain line (2).</li>
+  </ul>
+</details>
+
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var KEY = "khutba52:";
+  function get(k) { try { return localStorage.getItem(KEY + k); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(KEY + k, v); } catch (e) {} }
+
+  /* theme */
+  var themeBtn = document.getElementById("themeBtn");
+  function isDark() {
+    var t = root.getAttribute("data-theme");
+    if (t) return t === "dark";
+    return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function paintThemeLabel() { themeBtn.textContent = isDark() ? "Light" : "Dark"; }
+  var savedTheme = get("theme");
+  if (savedTheme === "dark" || savedTheme === "light") root.setAttribute("data-theme", savedTheme);
+  paintThemeLabel();
+  themeBtn.addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    set("theme", next);
+    paintThemeLabel();
+  });
+
+  /* text size */
+  var scale = parseFloat(get("scale"));
+  if (!(scale >= 0.8 && scale <= 1.6)) scale = 1;
+  function applyScale() { root.style.setProperty("--scale", scale.toFixed(2)); }
+  applyScale();
+  document.getElementById("smaller").addEventListener("click", function () {
+    scale = Math.max(0.8, Math.round((scale - 0.1) * 10) / 10); applyScale(); set("scale", scale);
+  });
+  document.getElementById("larger").addEventListener("click", function () {
+    scale = Math.min(1.6, Math.round((scale + 0.1) * 10) / 10); applyScale(); set("scale", scale);
+  });
+
+  /* jump menu */
+  var sec = document.getElementById("sec");
+  sec.addEventListener("click", function (e) { if (e.target.closest(".jump a")) sec.open = false; });
+  document.addEventListener("click", function (e) { if (sec.open && !sec.contains(e.target)) sec.open = false; });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") sec.open = false; });
+
+  /* current-section tracking, offset by the sticky bar */
+  var current = document.getElementById("current");
+  var markers = Array.prototype.slice.call(document.querySelectorAll("[data-label]"));
+  function updateCurrent() {
+    var barH = document.querySelector(".bar").getBoundingClientRect().height;
+    var line = barH + 24;
+    var label = markers[0].getAttribute("data-label");
+    for (var i = 0; i < markers.length; i++) {
+      if (markers[i].getBoundingClientRect().top <= line) label = markers[i].getAttribute("data-label");
+      else break;
+    }
+    var tmp = document.createElement("span"); tmp.innerHTML = label;
+    if (current.textContent !== tmp.textContent) current.textContent = tmp.textContent;
+  }
+
+  /* scroll persistence: survives Safari discarding the tab */
+  var saveTimer = null;
+  window.addEventListener("scroll", function () {
+    updateCurrent();
+    if (saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(function () { set("y", String(Math.round(window.scrollY))); }, 250);
+  }, { passive: true });
+  window.addEventListener("pagehide", function () { set("y", String(Math.round(window.scrollY))); });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "hidden") set("y", String(Math.round(window.scrollY)));
+  });
+
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  var y = parseInt(get("y"), 10);
+  function restore() {
+    if (!location.hash && y > 0) {
+      root.style.scrollBehavior = "auto";
+      window.scrollTo(0, y);
+      root.style.scrollBehavior = "";
+    }
+    updateCurrent();
+  }
+  /* offline: cache this khutba on the device (https only) */
+  if ("serviceWorker" in navigator && location.protocol === "https:") {
+    navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(function () {});
+  }
+
+  /* keep the screen awake where iOS allows it */
+  var lock = null;
+  function wake() {
+    if (!("wakeLock" in navigator) || lock || document.visibilityState !== "visible") return;
+    navigator.wakeLock.request("screen").then(function (l) {
+      lock = l; root.classList.add("awake");
+      l.addEventListener("release", function () { lock = null; root.classList.remove("awake"); });
+    }).catch(function () {});
+  }
+  wake();
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") wake(); });
+  document.addEventListener("click", wake);
+  document.addEventListener("touchend", wake, { passive: true });
+
+  if (document.readyState === "complete") restore();
+  else window.addEventListener("load", restore);
+})();
+</script>
+</body>
+</html>
